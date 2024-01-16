@@ -52,6 +52,18 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
             1. 공식적으로는 50% 이상 출석이 권장되지만 너무 중요한 훈련 프로그램이므로 꼭 참석하세요.
             '''
         )
+        st.subheader("AI 소화기 환자 병력 청취 훈련 프로그램")
+        with st.expander("AI 소화기 환자 병력 청취 훈련 프로그램 내용을 보려면 여기를 눌러주세요"):
+            st.markdown(
+                '''
+                1. chatgpt를 이용한 전형적인 소화기 환자의 chief complaint에 대한 병력 청취 훈련 프로그램입니다.
+                1. [AI patient Hx taking program](https://amcgi-22questions.streamlit.app/)에 접속하고, ID는 amcgi, PW는 3180을 입력하면 사용할 수 있습니다.
+                1. 왼편 sidebar에서 증례를 선정하고 한글 타이핑으로 질문하면 AI 환자가 적절한 대답을 하는 형식으로 진행됩니다.
+                1. 질문을 다 했으면 "궁금하신 점이 있으신가요"라고 AI 환자에게 질문하고 2 개의 질문을 받아 대답합니다.
+                1. AI의 두 가지 질문에 답하면 약 50초 기다렸다가 선생님이 질문하지 않았던 항목을 찾아 줍니다. 단 완전치는 않습니다.
+                1. 왼편 sidebar에는 증례의 해설 파일을 다운로드 받는 기능이 있으니 훈련에 참고하세요.
+                '''
+            )
         st.subheader("")
         st.subheader("")
 
