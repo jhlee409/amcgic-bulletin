@@ -11,7 +11,7 @@ st.header("Login page")
 st.markdown(
     '''
     1. 이 게시판은 서울 아산병원 GI 상부 전용 게시판입니다.
-    1. GI 상부의 EGD 교육 관련 문서 자료 제공을 위한 공간입니다.
+    1. GI 상부의 교육 관련 문서 자료 제공을 위한 공간입니다.
     1. 아래에 미리 등록하신 이메일 주소와 비밀 번호를 입력하세요
     1. 상부 전달 사항도 이 게시판을 통해 전달됩니다.
     '''
@@ -43,4 +43,4 @@ if st.button("Login"):
         st.error("An error occurred: " + str(e))
 
 st.divider()
-st.write("2024년 1월 4일 수정")
+st.write("2024년 1월 17일 수정")
