@@ -98,7 +98,7 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
         title = comment_data.get('title', '제목 없음')  # Default to '제목 없음' if 'title' is not found
 
         # Create a single row for each comment
-        col1, col2 = st.columns([2, 5])  # Adjust column widths as needed
+        col1, col2 = st.columns([1,2])  # Adjust column widths as needed
 
         with col1:
             # Concatenate the comment details
