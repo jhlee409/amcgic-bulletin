@@ -94,21 +94,17 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
     for comment in get_latest_comments():
         comment_data = comment.to_dict()
 
-        # Create columns: Serial number, Name, Title, Date, Content
-        col1, col2, col3, col4 = st.columns([1, 10, 10, 30])
-        with col1:
-            st.markdown(f'**{comment_counter}**')
-        with col2:
-            st.text(f"이름: {comment_data['author']}")
-        with col3:
-            st.text(f"제목: {comment_data['title']}")  # Display the title
-        with col4:
-            st.text(f"날짜: {comment_data['timestamp']}")
-            with st.expander("내용 보기"):
-                st.write(comment_data['text'])
+    # Check if the 'title' key exists in the comment data
+        title = comment_data.get('title', '제목 없음')  # Default to '제목 없음' if 'title' is not found
 
-    # Increment the counter
-    comment_counter += 1
+        # Concatenate the comment details
+        comment_details = f"{comment_counter}. 이름: {comment_data['author']} | 제목: {title} | 날짜: {comment_data['timestamp']}"
+        st.text(comment_details)
+
+        with st.expander("내용 보기"):
+            st.write(comment_data['text'])
+        # Increment the counter
+        comment_counter += 1
 
     # Single line space after each comment
     st.write("\n")  # Adds a single line space

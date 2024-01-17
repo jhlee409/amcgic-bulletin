@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 
-st.set_page_config(page_title="EGD 교육 구성과 일정")
+st.set_page_config(page_title="EGD 교육 구성과 일정", layout="wide")
 
 if st.session_state.get('logged_in', False):  # 로그인 상태 확인
 

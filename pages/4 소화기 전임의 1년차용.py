@@ -1,7 +1,7 @@
 import streamlit as st
 import os
 
-st.set_page_config(page_title="F1")
+st.set_page_config(page_title="F1", layout="wide")
 
 if st.session_state.get('logged_in', False):  # 로그인 상태 확인
 
