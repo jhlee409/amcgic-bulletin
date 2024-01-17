@@ -57,9 +57,10 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
         return f'document{next_number:04d}'
 
     # 댓글을 추가하는 함수
-    def add_comment(author, text):
+    def add_comment(author, title, text):
         comment = {
             'author': author,
+            'title': title,  # Added title field
             'text': text,
             'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M")
         }
@@ -77,11 +78,12 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
         with st.expander("*댓글을 입력하려면 누르세요.*"):
             with st.form(key='comment_form'):
                 name = st.text_input('이름')
+                title = st.text_input('제목')  # Input field for title
                 comment = st.text_area('내용', height=150)  # Adjust the height as needed
                 submit_button = st.form_submit_button(label='Submit')
 
                 if submit_button:
-                    add_comment(name, comment)
+                    add_comment(name, title, comment)  # Updated function call
                     
     if __name__ == '__main__':
         main()
@@ -92,22 +94,24 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
     for comment in get_latest_comments():
         comment_data = comment.to_dict()
 
-        # Create columns: Serial number, Name and Date, Content
-        col1, col2, col3 = st.columns([1, 20, 30])
+        # Create columns: Serial number, Name, Title, Date, Content
+        col1, col2, col3, col4 = st.columns([1, 10, 10, 30])
         with col1:
             st.markdown(f'**{comment_counter}**')
         with col2:
             st.text(f"이름: {comment_data['author']}")
-            st.text(f"날짜: {comment_data['timestamp']}")
         with col3:
+            st.text(f"제목: {comment_data['title']}")  # Display the title
+        with col4:
+            st.text(f"날짜: {comment_data['timestamp']}")
             with st.expander("내용 보기"):
                 st.write(comment_data['text'])
 
-        # Increment the counter
-        comment_counter += 1
+    # Increment the counter
+    comment_counter += 1
 
-        # Single line space after each comment
-        st.write("\n")  # Adds a single line space
-            
+    # Single line space after each comment
+    st.write("\n")  # Adds a single line space
+                
 else:
     st.warning('Please log in to read more.')
