@@ -8,7 +8,7 @@ from firebase_admin import firestore
 from datetime import datetime
 import json
 
-st.set_page_config(page_title="AMC GI C 게시판")
+st.set_page_config(page_title="AMC GI C 게시판", layout="wide")
     
 if st.session_state.get('logged_in', False):  # 로그인 상태 확인
     
