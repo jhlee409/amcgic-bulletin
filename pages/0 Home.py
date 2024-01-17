@@ -94,15 +94,22 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
     for comment in get_latest_comments():
         comment_data = comment.to_dict()
 
-    # Check if the 'title' key exists in the comment data
+        # Check if the 'title' key exists in the comment data
         title = comment_data.get('title', '제목 없음')  # Default to '제목 없음' if 'title' is not found
 
-        # Concatenate the comment details
-        comment_details = f"{comment_counter}. 이름: {comment_data['author']} | 제목: {title} | 날짜: {comment_data['timestamp']}"
-        st.text(comment_details)
+        # Create a single row for each comment
+        col1, col2 = st.columns([1, 1])  # Adjust column widths as needed
 
-        with st.expander("내용 보기"):
-            st.write(comment_data['text'])
+        with col1:
+            # Concatenate the comment details
+            comment_details = f"{comment_counter}. 이름: {comment_data['author']} | 제목: {title} | 날짜: {comment_data['timestamp']}"
+            st.text(comment_details)
+
+        with col2:
+            # Place the expander in the second column
+            with st.expander("내용 보기"):
+                st.write(comment_data['text'])
+
         # Increment the counter
         comment_counter += 1
 
