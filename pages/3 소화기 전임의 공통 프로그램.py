@@ -64,6 +64,20 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
                 1. 왼편 sidebar에는 증례의 해설 파일을 다운로드 받는 기능이 있으니 훈련에 참고하세요.
                 '''
             )
+            
+        st.subheader("AI EGD 사진 진단 훈련 프로그램")
+        with st.expander("AI EGD 사진 진단 훈련 프로그램의 내용을 보려면 여기를 눌러주세요"):
+            st.markdown(
+                '''
+                1. chatgpt를 이용한 EGD 병변 사진(png) 진단 훈련 프로그램입니다.
+                1. 접속 및 이용 방법은 차후 공지합니다.
+                1. 왼쪽 sidebar에서 png 사진과 case instruction 파일을 선택하고, 보여지는 병변의 impression을 아래 입력창에 입력하고 엔터를 칩니다.
+                1. 좀 기다리면 권장 답안과 비교를 하여 점수를 알려 줍니다.
+                1. 이 증례에 대해 추가로 궁금한 사항이 있으면 질문하면 정해진 내용 안에서는 대답해 줍니다.
+                1. 5월부터 매월 10 증례 씩 올릴 예정입니다.
+                '''
+            ) 
+            
         st.subheader("")
         st.subheader("")
 
