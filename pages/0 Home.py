@@ -19,7 +19,7 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
                 1. 소화기 내시경 교육 동영상은 서울아산병원 시뮬레이션 센터 [Sim Class](https://edu.amc.seoul.kr/)에서 시청할 수 있습니다.
                     1. ID 와 PW를 받아서 로그인 합니다.
                     1. 필요한 동영상을 청취하면 자동으로 출석 처리 됩니다.
-                1. AI 소화기 환자 병력 청취 훈련 프로그램은 훈련 프로그램 웹페이지 [AI patient Hx taking program](https://amcgi-22questions.streamlit.app/)에 접속하여 ID는 amcgi PW는 3180을 입력하시면 사용하실 수 있습니다.
+                1. AI 소화기 환자 병력 청취 훈련 프로그램과 EGD 병변 진단 훈련 프로그램은 [GI training programhttps://gi-training.streamlit.app/) 웹페이지에 접속하여 ID는 amcgi PW는 3180을 입력하시면 사용하실 수 있습니다.
             '''
         )
     st.divider()

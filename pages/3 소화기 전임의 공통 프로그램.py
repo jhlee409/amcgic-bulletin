@@ -7,7 +7,6 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
 
     st.header("AMC 소화기 내과 전임의 공통 교육 과정 설명")
     st.markdown("이 페이지는 AMC **GI 전임의 1년차 및 상부 전임의 2년차**를 대상으로하는 EGD 교육 과정의 설명입니다.")
-    st.markdown("이 페이지는 2023년 말에 작성된 문서로 **2024년** 근무 소화기내과 전임의를 위한 설명서입니다.")
     st.divider()
 
     tab1, tab2, tab3 = st.tabs(["공통 당부사항", "공통 프로그램 설명", "temp"])
@@ -57,7 +56,7 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
             st.markdown(
                 '''
                 1. chatgpt를 이용한 전형적인 소화기 환자의 chief complaint에 대한 병력 청취 훈련 프로그램입니다.
-                1. [AI patient Hx taking program](https://amcgi-22questions.streamlit.app/)에 접속하고, ID는 amcgi, PW는 3180을 입력하면 사용할 수 있습니다.
+                1. [GI training program](https://gi-training.streamlit.app/)에 접속하고, ID는 amcgi, PW는 3180을 입력하면 사용할 수 있습니다.
                 1. 왼편 sidebar에서 증례를 선정하고 한글 타이핑으로 질문하면 AI 환자가 적절한 대답을 하는 형식으로 진행됩니다.
                 1. 질문을 다 했으면 "궁금하신 점이 있으신가요"라고 AI 환자에게 질문하고 2 개의 질문을 받아 대답합니다.
                 1. AI의 두 가지 질문에 답하면 약 50초 기다렸다가 선생님이 질문하지 않았던 항목을 찾아 줍니다. 단 완전치는 않습니다.
@@ -70,9 +69,10 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
             st.markdown(
                 '''
                 1. chatgpt를 이용한 EGD 병변 사진(png) 진단 훈련 프로그램입니다.
-                1. 접속 및 이용 방법은 차후 공지합니다.
-                1. 왼쪽 sidebar에서 png 사진과 case instruction 파일을 선택하고, 보여지는 병변의 impression을 아래 입력창에 입력하고 엔터를 칩니다.
-                1. 좀 기다리면 권장 답안과 비교를 하여 점수를 알려 줍니다.
+                1. [GI training program](https://gi-training.streamlit.app/)에 접속하고, ID는 amcgi, PW는 3180을 입력하면 사용할 수 있습니다.
+                1. 가장 먼저 왼쪽 아래의 '이전 기록 삭제 버튼'을 눌러 이전 기록을 삭제해야 합니다.
+                1. 다음 왼쪽 sidebar에서 png 사진과 case instruction 파일을 선택하고, 보여지는 병변의 impression을 아래 입력창에 입력하고 엔터를 칩니다.
+                1. 좀 기다리면 권장 답안과 비교를 하여 점수를 알려 준 후 두 가지 질문을 하고 답에 대해 평가해 줍니다.
                 1. 이 증례에 대해 추가로 궁금한 사항이 있으면 질문하면 정해진 내용 안에서는 대답해 줍니다.
                 1. 5월부터 매월 10 증례 씩 올릴 예정입니다.
                 '''
