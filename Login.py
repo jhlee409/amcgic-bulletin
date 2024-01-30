@@ -43,4 +43,4 @@ if st.button("Login"):
 
 st.divider()
 st.write("2024년 1월 17일 코드 수정")
-st.write("2024년 1월 24일 게시물 내용 수정")
+st.write("2024년 1월 31일 게시물 내용 수정")
