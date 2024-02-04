@@ -41,6 +41,14 @@ if st.button("Login"):
     except Exception as e:
         st.error("An error occurred: " + str(e))
 
+# 로그 아웃 버튼
+if "logged_in" in st.session_state and st.session_state['logged_in']:
+    if st.button("Logout"):
+        st.session_state['logged_in'] = False
+        st.success("로그아웃 되었습니다.")
+        # 필요시 추가적인 세션 상태 초기화 코드
+        # 예: del st.session_state['logged_in']
+
 st.divider()
 st.write("2024년 1월 17일 코드 수정")
 st.write("2024년 2월 2일 게시물 내용 수정 (홈페이지 내용 수정은 수시로 있으므로 여기에 반영하지 않습니다.): 교육 일정 엑셀 파일 내용 중 '** 문장' 일부 안보이는 오류 수정")
