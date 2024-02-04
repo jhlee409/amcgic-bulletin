@@ -9,6 +9,14 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
     st.divider()
     st.markdown("이 페이지는 AMC **내과 전공의 3년차 소화기 proper**를 대상으로하는 진단 EGD 교육 과정의 설명입니다.")
 
+    # 로그 아웃 버튼
+    if "logged_in" in st.session_state and st.session_state['logged_in']:
+        if st.button("Logout"):
+            st.session_state['logged_in'] = False
+            st.success("로그아웃 되었습니다.")
+            # 필요시 추가적인 세션 상태 초기화 코드
+            # 예: del st.session_state['logged_in']
+
     tab1, tab2, tab3 = st.tabs(["당부사항", "각 프로그램 설명", "temp"])
 
     with tab1:
