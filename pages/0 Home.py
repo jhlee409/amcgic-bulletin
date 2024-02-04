@@ -31,6 +31,15 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
                 1. EGD 사진 Dx 훈련 프로그램에는 현재 7개의 증례가 올려져 있습니다. 사용해 보시고 문제가 있으면 게시글을 남기거나, 원내 메일을 보내 주세요. 아직 시작 단계라서, 많은 벌레가 있을 것으로 예상합니다. 본격적인 가동은 4월부터이고 매년 4월부터 다음해 2월까지 매월 18-20 증례가 올려질 예정입니다. 난이도에 따라 전임의 1년차와 2년차용 증례로 나뉘어 올려지는데, 물론 모두 해 보는 걸 권장합니다.
             '''
         )
+
+# 로그 아웃 버튼
+if "logged_in" in st.session_state and st.session_state['logged_in']:
+    if st.button("Logout"):
+        st.session_state['logged_in'] = False
+        st.success("로그아웃 되었습니다.")
+        # 필요시 추가적인 세션 상태 초기화 코드
+        # 예: del st.session_state['logged_in']
+
     st.divider()
     
     # Check if Firebase app has already been initialized
