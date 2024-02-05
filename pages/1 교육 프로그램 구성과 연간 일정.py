@@ -9,9 +9,11 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
     st.markdown("서울 아산병원 **GI C**에서 시행되는 내시경 교육 프로그램의 구성과 연간 일정을 보여주는 표입니다.")
     st.markdown("현 페이지의 정보는 2024년 1월에 작성된 것으로 **2024년**에 근무하는 선생님들을 위한 정보입니다.")
     st.markdown("구성표와 일정표를 다운로드 하려면 맨 아래 '파일 다운로드' 버튼을 눌러주세요")
+
+    st.sidebar.divider()
     # 로그 아웃 버튼
     if "logged_in" in st.session_state and st.session_state['logged_in']:
-        if st.button("Logout"):
+        if st.sidebar.button("Logout"):
             st.session_state['logged_in'] = False
             st.success("로그아웃 되었습니다.")
             # 필요시 추가적인 세션 상태 초기화 코드
