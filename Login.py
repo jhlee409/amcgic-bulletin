@@ -44,7 +44,7 @@ if st.button("Login"):
 # 로그 아웃 버튼
 if "logged_in" in st.session_state and st.session_state['logged_in']:
     st.sidebar.divider() 
-    if st.sidbar.button("Logout"):
+    if st.sidebar.button("Logout"):
         st.session_state['logged_in'] = False
         st.success("로그아웃 되었습니다.")
         # 필요시 추가적인 세션 상태 초기화 코드
