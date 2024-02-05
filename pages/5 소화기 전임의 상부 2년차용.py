@@ -10,7 +10,7 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
     
     # 로그 아웃 버튼
     if "logged_in" in st.session_state and st.session_state['logged_in']:
-        st.sidebar.divider()
+
         if st.sidebar.button("Logout"):
             st.session_state['logged_in'] = False
             st.success("로그아웃 되었습니다.")
