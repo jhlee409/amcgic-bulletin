@@ -25,13 +25,13 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
                     * 최소 1달에 1회 / 1년에 12회 참관합니다.
                     * 각 외래는 최장 1시간 정도만 참관합니다.
                     * 외래 참관 후 링크된 문서에 날짜를 적습니다 (YYYY-MM-DD).
-                        + 1. GIA 외래 - 상반기에는 최종기, 최원묵 교수님 외래를 하반기에는 최원묵, 정성원 교수님 외래를 참관합니다.
-                        + 2. GIB 췌담도암 통합진료 - 매주 수요일 12:30-1:30 000통합진료 외래를 참관합니다.
-                        + 3. GIC 식도암 통합진료 - 매주 금요일 09:00-10:00 통합진료 외래를 참관합니다.
-                        + 4. GIC 위암 통합진료 - 매주 화요일 16:00-17:00 통합진료 외래를 참관합니다.
-                        + 5. GID 대장종양 - 변정식, 양동훈 교수님 외래를 참관합니다.
-                        + 6. GID IBD- 황성욱 교수님 외래를 참관합니다.
-                        + 7. GICD 기능질환 - 정기욱, 김도훈 교수님 외래를 참관합니다.
+                        + 1. [GIA 외래](https://docs.google.com/spreadsheets/d/1sJ4hPndCBE8j_NkteWZPB7R5sb8cmy1zRHLARH-mLJ8/edit?usp=sharing) - 상반기에는 최종기, 최원묵 교수님 외래를 하반기에는 최원묵, 정성원 교수님 외래를 참관합니다.
+                        + 2. [GIB 췌담도암 통합진료](https://docs.google.com/spreadsheets/d/1RNUF94DAvPpAU6dxJlnGi5T3w_8rWgATSG6Q1w4DSsU/edit?usp=sharing) - 매주 수요일 12:30-1:30 000통합진료 외래를 참관합니다.
+                        + 3. [GIC 식도암 통합진료](https://docs.google.com/spreadsheets/d/12W-hZsQnPqYPgUe_DxGe1NfYaTk5g5mrfRN_NkFTUOE/edit?usp=sharing) - 매주 금요일 09:00-10:00 통합진료 외래를 참관합니다.
+                        + 4. [GIC 위암 통합진료](https://docs.google.com/spreadsheets/d/1ni_0S6GDMt6uKjpNDPcmBLW1Za0zW-KrbaqKWjwEQRk/edit?usp=sharing) - 매주 화요일 16:00-17:00 통합진료 외래를 참관합니다.
+                        + 5. [GID 대장종양](https://docs.google.com/spreadsheets/d/1BRwxnp9wLSfE_Y99fquhw-AiW5pdw7qjZVnmAmDQ5AY/edit?usp=sharing) - 변정식, 양동훈 교수님 외래를 참관합니다.
+                        + 6. [GID IBD](https://docs.google.com/spreadsheets/d/1F9bHCCDq4UNux3Bi0_Za3pAGAxVFA7ENq4Fhcx2dWcw/edit?usp=sharing- 황성욱 교수님 외래를 참관합니다.
+                        + 7. [GICD 기능질환](https://docs.google.com/spreadsheets/d/1-knhzdyZhTmJWOHpXILp7Umnwr9ztoQLiRJCnm2GMAw/edit?usp=sharing) - 정기욱, 김도훈 교수님 외래를 참관합니다.
                 ---------------------------------------------------------------------------------------------------------------------------------------------------------
                 1. 2월 후반부부터 3월 전반부에는 신임 전임의 1년차 선생님들 중에서 외부출신과 AMC 출신 중 EGD 교육 받지 않았던 선생님들의 EGD 교육이 있습니다.
                     * MT, SHT, EMT 과정을 한 달 안에 이수해야 합니다.
