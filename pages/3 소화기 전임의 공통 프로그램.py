@@ -89,7 +89,22 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
                 '''
             ) 
             
-        st.subheader("")
+        st.subheader("EGD 병변 진단에 있어 M-NBI의 중요성")
+        with st.expander("EGD 병변 진단에 있어 M-NBI의 중요성의 내용을 보려면 여기를 눌러주세요"):
+            st.markdown(
+                '''
+                1. EGD 병변의 진단에 있어 이제는 magnifying visual chromoscopy (우리 병원에서는 near focus NBI)의 역할은 필수 불가결해졌습니다.
+                1. 아직 병변의 분류체계는 정리되지 않았지만 머지 않은 시기에 M-NBI 진단체계는 정리되어 모든 내시경 의사들이 의무적으로 기술해야 하는 필수 요건이 될 것입니다.
+                1. M-NBI는 확대 비율이 높아 soft black hood를 써야지만 관찰할 수 있어, 배율은 떨어지나, 우리 병원 처럼 near focus NBI정도로 배율을 확대하여 보는 것이 일반적입니다.
+                1. 내시경 전문가가 되고자 하는 여러분은 반드시 M-NBI를 공부하여 진료에 적용해 보는 습관을 들여야 합니다.
+                1. 여기에 3개의 review 논문의 링크를 적습니다. 2023년말 현재까지 나와 있는 자료 중 가장 잘 되어 있는 리뷰논문이니 반드시 여러번 공부하여 자기 것으로 만드세요.
+                1. [Normal gastrointestinal mucosa with narrow band image](https://www.elsevier.es/en-revista-gastroenterologia-hepatologia-14-articulo-endoscopic-microanatomy-normal-gastrointestinal-mucosa-S0210570518302772)
+                1. [Narrow-Band Imaging in the Esophageal tumor](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8283285/)
+                1. [NBI of normal and Corresponding Histopathology in the Stomach](https://www.gutnliver.org/journal/view.html?doi=10.5009/gnl19392)
+                '''
+            ) 
+
+
         st.subheader("")
 
     with tab3:
