@@ -51,5 +51,4 @@ if "logged_in" in st.session_state and st.session_state['logged_in']:
         # 예: del st.session_state['logged_in']
 
 st.divider()
-st.write("3월22일 현재 아직도 전임의가 복귀하지 않고 있어, 내시경 교육 프로그램 운영은 정지된 상태이니다. 곧 해결이 원만하게 되어 다시 시작하면 좋겠습니다.")
-st.write("EGD 증례 ai 진단 훈련 프로그램이 4월분 완성되기는 했지만, 아무도 이용할 것 같지 않아 무기한 연기합니다.")
+st.write("3월22일 현재 아직도 전임의가 복귀하지 않고 있어, 내시경 교육 프로그램 운영은 정지된 상태입니다. 빠른 시일 내에 사태가 원만하게 해결 되어 다시 시작할 수 있으면 좋겠습니다.")
