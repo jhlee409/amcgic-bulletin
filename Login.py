@@ -3,7 +3,7 @@ import requests
 import json
 import streamlit_authenticator as stauth
 
-st.set_page_config(page_title="AMC GI C")
+st.set_page_config(page_title="AMC GI C", layout="wide")
 
 # Streamlit 페이지 설정
 st.title("서울 아산병원 GI 상부 게시판")					
