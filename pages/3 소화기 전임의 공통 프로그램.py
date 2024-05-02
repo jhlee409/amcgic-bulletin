@@ -79,8 +79,8 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
             st.markdown(
                 '''
                 1. 전임의 1년차와 2년차가 알아야 할 대부분의 병변의 사진을 보고 진단을 훈련하는 프로그램입니다.(2024년 216 증례 사진)
-                1. [GI training program](https://gi-training.streamlit.app/)에 접속하고, 로그인은 이메일 주소와 PW를 입력하면 됩니다.
-                1. 사전에 이진혁 교수님에게 이메일 주소와 숫자 알파벳 혼용한 8자리의 PW를 등록한 후 입력해야 합니다.
+                1. 사전에 이진혁 교수님에게 이메일 주소와 숫자 알파벳 혼용한 8자리의 PW를 등록해야 합니다.
+                1. [GI training program](https://gi-training.streamlit.app/)에 접속하고, 등록했던 이메일 주소와 PW를 입력하면 됩니다.
                 1. 가장 먼저 왼쪽 sidebar에서 F1이나 F2를 선택합니다. 가능하면 모두 공부하길 권합니다.
                 1. 다음 case instruction 파일을 선택하면 증례 사진과 질문이 보입니다.
                 1. 질문에 대한 답을 충분히 생각해 보고, '진행' 버튼을 누르면 답이 보입니다. 자신의 답과 비교해 보세요.
