@@ -33,8 +33,6 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
                         + 5. [GID 대장종양](https://docs.google.com/spreadsheets/d/1BRwxnp9wLSfE_Y99fquhw-AiW5pdw7qjZVnmAmDQ5AY/edit?usp=sharing) - 변정식, 양동훈 교수님 외래를 참관합니다.
                         + 6. [GID IBD](https://docs.google.com/spreadsheets/d/1F9bHCCDq4UNux3Bi0_Za3pAGAxVFA7ENq4Fhcx2dWcw/edit?usp=sharing) - 황성욱 교수님 외래를 참관합니다.
                         + 7. [GICD 기능질환](https://docs.google.com/spreadsheets/d/1-knhzdyZhTmJWOHpXILp7Umnwr9ztoQLiRJCnm2GMAw/edit?usp=sharing) - 정기욱, 김도훈 교수님 외래를 참관합니다.
-                ---------------------------------------------------------------------------------------------------------------------------------------------------------
-                1. 3월 22일부터 4월 11일 현재 EGD 교육 프로그램 운영은 정지된 상태입니다. 상황이 호전되면 다시 시작할 것이고 변동 사항은 이 게시판을 통해 알려 드리겠습니다.
                 '''
                 # 1. 2월 후반부부터 3월 전반부에는 신임 전임의 1년차 선생님들 중에서 외부출신과 AMC 출신 중 EGD 교육 받지 않았던 선생님들의 EGD 교육이 있습니다.
                 #     * MT, SHT, EMT 과정을 한 달 안에 이수해야 합니다.
