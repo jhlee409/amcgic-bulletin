@@ -53,4 +53,4 @@ else:
         st.session_state.logged_in = False
         st.experimental_rerun()  # 페이지를 새로고침하여 로그인 화면으로 돌아감
 
-    st.write("마지막 수정 날짜 및 수정사항: 2024년 5월 3일; 로그인 방식 변경, GI training program 웹 페이지 ID와 PW로 로그인")
+    st.write("마지막 수정 날짜 및 수정사항: 2024년 10월 17일; 로그인 방식 변경; 연간 계획표에서 ID와 PW 제공")
