@@ -101,8 +101,8 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
             st.markdown(
                 '''
                 1. 9월 초에 PEG simulator를 가지고 직접 해보는 훈련이 있습니다. 대게는 토요일 오후에 시행하게 됩니다. 확정 날짜는 추후 통보됩니다.
-                1. 훈련 전 [Sim Class](https://edu.amc.seoul.kr/)에 올려져 있는 예습 동영상을 충분히 보고 훈련에 임하기 바랍니다.
-                1. 대게는 두 조로 나뉘어 각 방에서 시범을 보고 직접 해 보는 방식으로 진행됩니다.
+                1. 훈련 전 [GI training program](https://gi-training.streamlit.app/)에 올려져 있는 예습 동영상을 충분히 보고 훈련에 임하기 바랍니다.
+                1. 세 조로 나뉘어 각 방에서 시범을 보고 직접 해 보는 방식으로 진행됩니다.
                 '''
             )
         st.subheader("")
