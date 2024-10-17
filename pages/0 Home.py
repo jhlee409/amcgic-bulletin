@@ -23,6 +23,7 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
                     * 필요한 동영상을 청취하면 자동으로 출석 처리 됩니다.
                     * GI training programs에 로그인 하기 위해서는 이메일 주소를 ID로 글자 숫자 섞어서 8자 이상의 PW를 이진혁 교수에게 메일로 보내 허락을 받고 등록한 후 들어갈 수 있습니다.
                 1. 소화기 전임의 공통 프로그램 페이지에 NBI 리뷰 논문 링크를 적어 놓았습니다. 반드시 공부하기 바랍니다.
+                '''
                 # 1. 전임의 외래 참관 (2024): 새로 추가, 소화기 전임의 1년차에게만 해당하는 교육 프로그램입니다.
                 #     * 최소 1달에 1회 / 1년에 12회 참관합니다.
                 #     * 각 외래는 최장 1시간 정도만 참관합니다.
@@ -34,7 +35,7 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
                 #         + 5. [GID 대장종양](https://docs.google.com/spreadsheets/d/1BRwxnp9wLSfE_Y99fquhw-AiW5pdw7qjZVnmAmDQ5AY/edit?usp=sharing) - 변정식, 양동훈 교수님 외래를 참관합니다.
                 #         + 6. [GID IBD](https://docs.google.com/spreadsheets/d/1F9bHCCDq4UNux3Bi0_Za3pAGAxVFA7ENq4Fhcx2dWcw/edit?usp=sharing) - 황성욱 교수님 외래를 참관합니다.
                 #         + 7. [GICD 기능질환](https://docs.google.com/spreadsheets/d/1-knhzdyZhTmJWOHpXILp7Umnwr9ztoQLiRJCnm2GMAw/edit?usp=sharing) - 정기욱, 김도훈 교수님 외래를 참관합니다.
-                '''
+
                 # 1. 2월 후반부부터 3월 전반부에는 신임 전임의 1년차 선생님들 중에서 외부출신과 AMC 출신 중 EGD 교육 받지 않았던 선생님들의 EGD 교육이 있습니다.
                 #     * MT, SHT, EMT 과정을 한 달 안에 이수해야 합니다.
                 #     * 변소영 선생님께서는 해당 선생님들과 일정을 상의해서 교육이 진행되도록 해주세요.
