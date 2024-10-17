@@ -90,10 +90,9 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
         with st.expander("Hemostasis simulator training 내용을 보려면 여기를 눌러주세요"):
             st.markdown(
                 '''
-                1. AMC GI 에서 시행되는 지혈술 시뮬레이터 훈련 종목은, hemoclip, injection, APC, EVL, Nexpower spray 이렇게 5가지 입니다.
-                1. 이전에는 한 날에 모든 종목을 다 할 수 없어, 두 번 정도 나누어서 시행했지만 2024년부터는 한 날에 5개 방에서 한꺼번에 훈련합니다. 
-                1. 7월 전반부에 주로 토요일 오후에 교육이 있습니다. 확정 날짜는 추후 통보됩니다.
-                1. 훈련 전 [Sim Class](https://edu.amc.seoul.kr/)에 올려져 있는 예습 동영상을 충분히 보고 훈련에 임하기 바랍니다. 특정 종목에서는 협찬한 회사에서 사전 발표를 하는 경우도 있겠습니다.
+                1. AMC GI 에서 시행되는 지혈술 시뮬레이터 훈련 종목은, hemoclip, injection, APC, Nexpower spray, EVL  이렇게 5가지 입니다.
+                1. 7월 전반부에 주로 토요일 오후에 교육이 있습니다. 5개 방에서 모든 지혈술을 그 날 훈련하게 됩니다. 확정 날짜는 추후 통보됩니다.
+                1. 훈련 전 [GI training program](https://gi-training.streamlit.app/)에 올려져 있는 지혈술 일반 강의 동영상을 충분히 보고 훈련에 임하기 바랍니다. 특정 종목에서는 협찬한 회사에서 사전 발표를 하는 경우도 있겠습니다.
                 1. 5개 그룹으로 나누어서 한 방에 한 그룹이 들어가 훈련하고 로테이션 하는 체제로 진행합니다.
                 '''
             )
