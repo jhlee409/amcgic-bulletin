@@ -28,7 +28,7 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
             1. 4월 orientation과 memory test 를 시작으로 앞에 첨부된 연간 일정표에 따라 훈련이 진행됩니다. OT 때 교육 수첩을 받아 교육과정 내내 사용하게 됩니다.
             1. 교육 과정은 MT(memory test), SHT(scope handling test), EMT(EGD method training), participation, performance test로 이 순서에 따라 진행됩니다.
             1. 훈련 프로그램 OT는 1번을 기본으로 하고, 필요에 따라 2번 반복하는 것이 원칙이니, 미리 알려주는 일정에 참여할 수 있도록 스케쥴을 조정하기 바랍니다.
-            1. 훈련과정의 소개 프로그램은 [Sim Class](https://edu.amc.seoul.kr/)에 접속하면 시청할 수 있습니다. 구체적인 방법은 앞의 Home page를 참고하세요.
+            1. 훈련과정의 소개 프로그램은 [Sim Class](https://edu.amc.seoul.kr/)에 접속하면 시청할 수 있습니다. 구체적인 방법은 앞의 Home page를 참고하세요
             1. 목표 달성 여부는 시험을 통해 확인하는데, 시험에는 교수님이 참관하시므로 열심히 훈련하기 바랍니다.
             1. 의무사항은 아니지만, AI 환자 병력 청취 훈련 프로그램은 매우 효과적인 문진 훈련 프로그램입니다. 10개의 증례가 마련되어 있으므로 완전히 자기 것이 될 때 까지 반복 훈련하세요.
             1. 시뮬레이션 센터의 여러 선생님들이 소화기의 요청에 의해 프로그램을 운영하시고 계십니다. 예의와 존중을 잊지 말기 바랍니다.               
