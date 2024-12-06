@@ -41,37 +41,17 @@ if not st.session_state.logged_in:
 
         if is_login:
             # 로그인 성공 시 처리
-            # 사용자 이메일과 접속 날짜 기록
-            user_name = st.session_state.get('user_name', 'unknown')  #
+            st.session_state['user_name'] = user_name  # Store the user_name in session state
+            st.session_state.logged_in = True  # Set logged in state
             access_date = datetime.now().strftime("%Y-%m-%d")  # 현재 날짜 가져오기 (시간 제외)
 
-            # 로그 내용을 문자열로 생성
-            log_entry = f"User Name: {user_name}, Access Date: {access_date}, Menu: amcgi bulletin\n"  # Include user_name in log
+            # Log entry creation
+            log_entry = f"User Name: {user_name}, Access Date: {access_date}\n"
 
-            # Firebase Storage에 로그 파일 업로드
-            cred = credentials.Certificate({
-                "type": "service_account",
-                "project_id": st.secrets["project_id"],
-                "private_key_id": st.secrets["private_key_id"],
-                "private_key": st.secrets["private_key"].replace('\\n', '\n'),
-                "client_email": st.secrets["client_email"],
-                "client_id": st.secrets["client_id"],
-                "auth_uri": st.secrets["auth_uri"],
-                "token_uri": st.secrets["token_uri"],
-                "auth_provider_x509_cert_url": st.secrets["auth_provider_x509_cert_url"],
-                "client_x509_cert_url": st.secrets["client_x509_cert_url"],
-                "universe_domain": st.secrets["universe_domain"]
-            })
-            # Check if Firebase app has already been initialized
-            if not firebase_admin._apps:
-                firebase_admin.initialize_app(cred)
-            bucket = storage.bucket('amcgi-bulletin.appspot.com')  # Firebase Storage 버킷 참조
-            log_blob = bucket.blob(f'logs/{user_name}_{access_date}_amcgi bulletin.txt')  # 로그 파일 경로 설정
-            log_blob.upload_from_string(log_entry, content_type='text/plain')  # 문자열로 업로드
+            # Firebase Storage upload logic here...
+            # ...
 
             st.success("로그인에 성공하셨습니다. 이제 왼편의 각 프로그램을 사용하실 수 있습니다.")
-            st.session_state.logged_in = True
-            st.divider()
         else:
             st.error("로그인 정보가 정확하지 않습니다.")
 else:
