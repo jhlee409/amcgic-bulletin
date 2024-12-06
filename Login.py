@@ -29,6 +29,7 @@ if not st.session_state.logged_in:
     st.subheader("로그인 페이지")
     id = st.text_input("사용자 ID")
     password = st.text_input("비밀번호", type="password")
+    user_name = st.text_input("사용자 이름")  # Add username input field
 
     # 로그인 버튼 추가
     login_button = st.button('로그인')
@@ -41,11 +42,11 @@ if not st.session_state.logged_in:
         if is_login:
             # 로그인 성공 시 처리
             # 사용자 이메일과 접속 날짜 기록
-            user_email = st.session_state.get('user_email', 'unknown')  # 세션에서 이메일 가져오기
+            user_email = st.session_state.get('user_name', 'unknown')  # 세션에서 이메일 가져오기
             access_date = datetime.now().strftime("%Y-%m-%d")  # 현재 날짜 가져오기 (시간 제외)
 
             # 로그 내용을 문자열로 생성
-            log_entry = f"Email: {user_email}, Access Date: {access_date}, Menu: EGD Hemostasis training\n"
+            log_entry = f"Email: {user_name}, Access Date: {access_date}, Menu: EGD Hemostasis training\n"
 
             # Firebase Storage에 로그 파일 업로드
             cred = credentials.Certificate({
