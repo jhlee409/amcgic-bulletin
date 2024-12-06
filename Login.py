@@ -29,7 +29,7 @@ if not st.session_state.logged_in:
     st.subheader("로그인 페이지")
     id = st.text_input("사용자 ID")
     password = st.text_input("비밀번호", type="password")
-    user_name = st.text_input("사용자 이름")  # Add username input field
+    user_name = st.text_input("사용자 이름")  # 사용자 이름 입력란 (한글 포함 가능)
 
     # 로그인 버튼 추가
     login_button = st.button('로그인')
