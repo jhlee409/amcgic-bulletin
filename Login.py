@@ -2,6 +2,9 @@ import streamlit as st
 import requests
 import json
 import streamlit_authenticator as stauth
+from datetime import datetime, timedelta
+import firebase_admin
+from firebase_admin import credentials, storage
 
 st.set_page_config(page_title="AMC GI C", layout="wide")
 
@@ -37,6 +40,32 @@ if not st.session_state.logged_in:
 
         if is_login:
             # 로그인 성공 시 처리
+            # 사용자 이메일과 접속 날짜 기록
+            user_email = st.session_state.get('user_email', 'unknown')  # 세션에서 이메일 가져오기
+            access_date = datetime.now().strftime("%Y-%m-%d")  # 현재 날짜 가져오기 (시간 제외)
+
+            # 로그 내용을 문자열로 생성
+            log_entry = f"Email: {user_email}, Access Date: {access_date}, Menu: EGD Hemostasis training\n"
+
+            # Firebase Storage에 로그 파일 업로드
+            cred = credentials.Certificate({
+                "type": "service_account",
+                "project_id": st.secrets["project_id"],
+                "private_key_id": st.secrets["private_key_id"],
+                "private_key": st.secrets["private_key"].replace('\\n', '\n'),
+                "client_email": st.secrets["client_email"],
+                "client_id": st.secrets["client_id"],
+                "auth_uri": st.secrets["auth_uri"],
+                "token_uri": st.secrets["token_uri"],
+                "auth_provider_x509_cert_url": st.secrets["auth_provider_x509_cert_url"],
+                "client_x509_cert_url": st.secrets["client_x509_cert_url"],
+                "universe_domain": st.secrets["universe_domain"]
+            })
+            firebase_admin.initialize_app(cred)
+            bucket = storage.bucket('amcgi-bulletin.appspot.com')  # Firebase Storage 버킷 참조
+            log_blob = bucket.blob(f'logs/{user_email}_{access_date}_EGD Hemostasis training.txt')  # 로그 파일 경로 설정
+            log_blob.upload_from_string(log_entry, content_type='text/plain')  # 문자열로 업로드
+
             st.success("로그인에 성공하셨습니다. 이제 왼편의 각 프로그램을 사용하실 수 있습니다.")
             st.session_state.logged_in = True
             st.divider()
