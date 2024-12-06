@@ -42,7 +42,7 @@ if not st.session_state.logged_in:
         if is_login:
             # 로그인 성공 시 처리
             # 사용자 이메일과 접속 날짜 기록
-            user_name = st.session_state.get('user_name', 'unknown')  # 세션에서 이메일 가져오기
+            user_name = st.session_state.get('user_name', 'unknown')  #
             access_date = datetime.now().strftime("%Y-%m-%d")  # 현재 날짜 가져오기 (시간 제외)
 
             # 로그 내용을 문자열로 생성
