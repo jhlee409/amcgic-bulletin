@@ -46,7 +46,7 @@ if not st.session_state.logged_in:
             access_date = datetime.now().strftime("%Y-%m-%d")  # 현재 날짜 가져오기 (시간 제외)
 
             # 로그 내용을 문자열로 생성
-            log_entry = f"Email: {user_name}, Access Date: {access_date}, Menu: EGD Hemostasis training\n"
+            log_entry = f"User Name: {user_name}, Access Date: {access_date}, Menu: amcgi bulletin\n"  # Include user_name in log
 
             # Firebase Storage에 로그 파일 업로드
             cred = credentials.Certificate({
