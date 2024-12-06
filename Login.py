@@ -29,7 +29,6 @@ if not st.session_state.logged_in:
     st.subheader("로그인 페이지")
     id = st.text_input("사용자 ID")
     password = st.text_input("비밀번호", type="password")
-    user_name = st.text_input("사용자 이름")  # 사용자 이름 입력란 (한글 포함 가능)
 
     # 로그인 버튼 추가
     login_button = st.button('로그인')
@@ -41,16 +40,6 @@ if not st.session_state.logged_in:
 
         if is_login:
             # 로그인 성공 시 처리
-            st.session_state['user_name'] = user_name  # Store the user_name in session state
-            st.session_state.logged_in = True  # Set logged in state
-            access_date = datetime.now().strftime("%Y-%m-%d")  # 현재 날짜 가져오기 (시간 제외)
-
-            # Log entry creation
-            log_entry = f"User Name: {user_name}, Access Date: {access_date}\n"
-
-            # Firebase Storage upload logic here...
-            # ...
-
             st.success("로그인에 성공하셨습니다. 이제 왼편의 각 프로그램을 사용하실 수 있습니다.")
         else:
             st.error("로그인 정보가 정확하지 않습니다.")
