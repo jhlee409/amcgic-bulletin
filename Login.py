@@ -62,7 +62,9 @@ if not st.session_state.logged_in:
                 "client_x509_cert_url": st.secrets["client_x509_cert_url"],
                 "universe_domain": st.secrets["universe_domain"]
             })
-            firebase_admin.initialize_app(cred)
+            # Check if Firebase app has already been initialized
+            if not firebase_admin._apps:
+                firebase_admin.initialize_app(cred)
             bucket = storage.bucket('amcgi-bulletin.appspot.com')  # Firebase Storage 버킷 참조
             log_blob = bucket.blob(f'logs/{user_email}_{access_date}_EGD Hemostasis training.txt')  # 로그 파일 경로 설정
             log_blob.upload_from_string(log_entry, content_type='text/plain')  # 문자열로 업로드
