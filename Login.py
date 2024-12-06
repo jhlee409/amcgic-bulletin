@@ -2,9 +2,6 @@ import streamlit as st
 import requests
 import json
 import streamlit_authenticator as stauth
-from datetime import datetime, timedelta
-import firebase_admin
-from firebase_admin import credentials, storage
 
 st.set_page_config(page_title="AMC GI C", layout="wide")
 
@@ -41,6 +38,8 @@ if not st.session_state.logged_in:
         if is_login:
             # 로그인 성공 시 처리
             st.success("로그인에 성공하셨습니다. 이제 왼편의 각 프로그램을 사용하실 수 있습니다.")
+            st.session_state.logged_in = True
+            st.divider()
         else:
             st.error("로그인 정보가 정확하지 않습니다.")
 else:
