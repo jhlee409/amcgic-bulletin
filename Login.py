@@ -11,9 +11,9 @@ st.set_page_config(page_title="AMC GI C", layout="wide")
 
 # Firebase 초기화
 if not firebase_admin._apps:
-    cred = credentials.Certificate('secret/firebase-key.json')
+    cred = credentials.Certificate('secret/amcgi-bulletin-4f317f4638ed.json')
     firebase_admin.initialize_app(cred, {
-        'storageBucket': 'amcgic-bulletin.appspot.com'
+        'storageBucket': 'amcgi-bulletin.appspot.com'
     })
 
 # Streamlit 페이지 설정
@@ -50,6 +50,8 @@ def create_and_upload_log(name):
         return True
     except Exception as e:
         st.error(f"로그 업로드 중 오류 발생: {str(e)}")
+        if os.path.exists(filename):  # 에러 발생 시 로컬 파일 정리
+            os.remove(filename)
         return False
 
 # 로그아웃 버튼 상태 관리
