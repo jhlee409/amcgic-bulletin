@@ -26,6 +26,7 @@ if not st.session_state.logged_in:
     st.subheader("로그인 페이지")
     id = st.text_input("사용자 ID")
     password = st.text_input("비밀번호", type="password")
+    name = st.text_input("이름")
 
     # 로그인 버튼 추가
     login_button = st.button('로그인')
@@ -39,6 +40,7 @@ if not st.session_state.logged_in:
             # 로그인 성공 시 처리
             st.success("로그인에 성공하셨습니다. 이제 왼편의 각 프로그램을 사용하실 수 있습니다.")
             st.session_state.logged_in = True
+            st.session_state.user_name = name  # 이름을 세션 상태에 저장
             st.divider()
         else:
             st.error("로그인 정보가 정확하지 않습니다.")
