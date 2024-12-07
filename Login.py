@@ -75,13 +75,19 @@ if not st.session_state.logged_in:
                         "client_x509_cert_url": st.secrets["client_x509_cert_url"],
                         "universe_domain": st.secrets["universe_domain"]
                     })
+                    # storageBucket을 올바르게 설정
                     firebase_admin.initialize_app(cred, {'storageBucket': st.secrets["storage_bucket"]})
 
-                bucket = storage.bucket()
-                blob = bucket.blob(log_file_name)
-                blob.upload_from_filename(log_file_name)
+                # 버킷 이름이 올바르게 설정되었는지 확인
+                bucket_name = st.secrets["storage_bucket"]
+                if not bucket_name:
+                    st.error("버킷 이름이 설정되지 않았습니다. secrets에 확인하세요.")
+                else:
+                    bucket = storage.bucket(bucket_name)  # 버킷 이름을 명시적으로 설정
+                    blob = bucket.blob(log_file_name)
+                    blob.upload_from_filename(log_file_name)
 
-                st.success(f"{log_file_name} 파일이 Firebase Storage에 업로드되었습니다.")
+                    st.success(f"{log_file_name} 파일이 Firebase Storage에 업로드되었습니다.")
         else:
             st.error("로그인 정보가 정확하지 않습니다.")
 else:
