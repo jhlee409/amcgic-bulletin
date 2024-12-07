@@ -76,10 +76,10 @@ if not st.session_state.logged_in:
                         "universe_domain": st.secrets["universe_domain"]
                     })
                     # storageBucket을 하드코딩
-                    firebase_admin.initialize_app(cred, {'storageBucket': 'your-storage-bucket-name'})  # 여기에 실제 버킷 이름을 입력하세요.
+                    firebase_admin.initialize_app(cred, {'storageBucket': 'your-project-id.appspot.com'})  # 여기에 실제 버킷 이름을 입력하세요.
 
                 # 버킷 이름을 하드코딩
-                bucket_name = 'your-storage-bucket-name'  # 여기에 실제 버킷 이름을 입력하세요.
+                bucket_name = 'your-project-id.appspot.com'  # 여기에 실제 버킷 이름을 입력하세요.
                 bucket = storage.bucket(bucket_name)  # 버킷 이름을 명시적으로 설정
                 blob = bucket.blob(log_file_name)
                 blob.upload_from_filename(log_file_name)
