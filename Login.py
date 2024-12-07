@@ -86,7 +86,7 @@ if not st.session_state.logged_in:
             st.error("로그인 정보가 정확하지 않습니다.")
 else:
     # 로그인 성공 시 화면
-    st.success("로그인에 성공하셨습니다. 이제 왼편의 각 프로그램을 사용하실 수 있습니다.")
+    st.success("로그인에 성공��셨습니다. 이제 왼편의 각 프로그램을 사용하실 수 있습니다.")
     st.divider()
     
     # 로그아웃 버튼 생성
