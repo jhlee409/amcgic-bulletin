@@ -10,7 +10,7 @@ import os
 
 # Initialize Firebase if not already initialized
 if not firebase_admin._apps:
-    cred = credentials.Certificate("secret/amcgi-bulletin-4f317f4638ed.json")
+    cred = credentials.Certificate("c:/Users/jhlee/OneDrive - UOU/Endoscopy education system/EGD_training_progmramming/project_amcgic_bulletin/secret/amcgi-bulletin-4f317f4638ed.json")
     firebase_admin.initialize_app(cred, {
         'storageBucket': 'amcgi-bulletin.appspot.com'
     })
