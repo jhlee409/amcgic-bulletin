@@ -12,9 +12,7 @@ st.set_page_config(page_title="AMC GI C", layout="wide")
 # Firebase 초기화
 if not firebase_admin._apps:
     cred = credentials.Certificate('secret/amcgi-bulletin-4f317f4638ed.json')
-    firebase_admin.initialize_app(cred, {
-        'storageBucket': 'amcgi-bulletin.appspot.com'
-    })
+    firebase_admin.initialize_app(cred)
 
 # Streamlit 페이지 설정
 st.title("서울 아산병원 GI 상부 게시판")					
@@ -41,7 +39,7 @@ def create_and_upload_log(name):
     
     try:
         # Firebase Storage에 업로드
-        bucket = storage.bucket()
+        bucket = storage.bucket('amcgi-bulletin-915cab4f439c.appspot.com')
         blob = bucket.blob(f'login_logs/{filename}')
         blob.upload_from_filename(filename)
         
