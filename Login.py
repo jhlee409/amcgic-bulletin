@@ -52,6 +52,6 @@ else:
     # 로그아웃 버튼 생성
     if st.sidebar.button('로그아웃'):
         st.session_state.logged_in = False
-        st.experimental_rerun()  # 페이지를 새로고침하여 로그인 화면으로 돌아감
+        # st.experimental_rerun()  # 페이지를 새로고침하여 로그인 화면으로 돌아감
 
     st.write("마지막 수정 날짜 및 수정사항: 2024년 10월 17일; 로그인 방식 변경; 연간 계획표에서 ID와 PW 제공")
