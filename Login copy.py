@@ -5,7 +5,6 @@ import streamlit_authenticator as stauth
 import datetime
 import firebase_admin
 from firebase_admin import storage
-from firebase_admin import credentials
 
 st.set_page_config(page_title="AMC GI C", layout="wide")
 
