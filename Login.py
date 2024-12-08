@@ -68,7 +68,7 @@ if st.button("Login"):
 
             # Firebase Storage에 업로드
             try:
-                blob = bucket.blob(f"bulletin/{filename}")
+                blob = bucket.blob(f"log_bulletin/{filename}")
                 blob.upload_from_filename(filename)
             except Exception as e:
                 st.error("Firebase 업로드 중 오류가 발생했습니다: " + str(e))
