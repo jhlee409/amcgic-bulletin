@@ -8,7 +8,7 @@ st.set_page_config(page_title="AMC GI C", layout="wide")
 
 # Firebase 초기화
 cred = credentials.Certificate("path/to/your/firebase_credentials.json")  # Firebase 서비스 계정 키 파일 경로
-initialize_app(cred, {"storageBucket": "your-project-id.appspot.com"})
+initialize_app(cred, {"storageBucket": "amcgi-bulletin.appspot.com"})
 bucket = storage.bucket()
 
 # Streamlit 페이지 설정
