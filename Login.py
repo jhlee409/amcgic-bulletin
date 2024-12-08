@@ -2,13 +2,12 @@ import streamlit as st
 import json
 from datetime import datetime
 import firebase_admin
-from firebase_admin import credentials, storage, initialize_app
+from firebase_admin import credentials, storage
 import os
 
 st.set_page_config(page_title="AMC GI C", layout="wide")
 
 # Firebase 초기화
-# Check if Firebase app has already been initialized
 if not firebase_admin._apps:
     # Streamlit Secrets에서 Firebase 설정 정보 로드
     cred = credentials.Certificate({
@@ -24,12 +23,11 @@ if not firebase_admin._apps:
         "client_x509_cert_url": st.secrets["client_x509_cert_url"],
         "universe_domain": st.secrets["universe_domain"]
     })
-    firebase_admin.initialize_app(cred)
-    initialize_app(cred , {"storageBucket": "amcgi-bulletin.appspot.com"})
-    
-    # Firebase Storage 버킷 참조
-    bucket_name = 'amcgi-bulletin.appspot.com'
-    bucket = storage.bucket(bucket_name)
+    firebase_admin.initialize_app(cred, {"storageBucket": "amcgi-bulletin.appspot.com"})
+
+# Firebase Storage 버킷 참조
+bucket_name = 'amcgi-bulletin.appspot.com'
+bucket = storage.bucket(bucket_name)  # 항상 사용할 수 있도록 초기화
 
 # Streamlit 페이지 설정
 st.title("서울 아산병원 GI 상부 게시판")
@@ -44,19 +42,19 @@ st.markdown(
 st.divider()
 
 # 사용자 입력
-email = st.text_input("Email (예: amcgi)")
-password = st.text_input("Password (예: 3180)", type="password")
+ID = st.text_input("ID")
+password = st.text_input("Password", type="password")
 name = st.text_input("Your Name (예: 홍길동)")
 
 # 로그인 버튼
 if st.button("Login"):
-    if email == "amcgi" and password == "3180":
+    if ID == "amcgi" and password == "3180":
         if name.strip() == "":
             st.error("사용자 이름을 입력하세요.")
         else:
-            st.success(f"{email}님, 로그인에 성공하셨습니다. 이제 왼쪽의 메뉴를 이용하실 수 있습니다.")
+            st.success(f"로그인에 성공하셨습니다. 이제 왼쪽의 메뉴를 이용하실 수 있습니다.")
             st.session_state['logged_in'] = True
-            st.session_state['user_email'] = email
+            st.session_state['user_ID'] = ID
             st.session_state['user_name'] = name
             
             # 날짜와 사용자 이름 기반 텍스트 파일 생성
