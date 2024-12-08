@@ -1,14 +1,31 @@
 import streamlit as st
 import json
 from datetime import datetime
+import firebase_admin
 from firebase_admin import credentials, storage, initialize_app
 import os
 
 st.set_page_config(page_title="AMC GI C", layout="wide")
 
 # Firebase 초기화
-firebase_credentials_path = st.secrets["FIREBASE_CREDENTIALS_PATH"]
-initialize_app(firebase_credentials_path , {"storageBucket": "amcgi-bulletin.appspot.com"})
+# Check if Firebase app has already been initialized
+if not firebase_admin._apps:
+    # Streamlit Secrets에서 Firebase 설정 정보 로드
+    cred = credentials.Certificate({
+        "type": "service_account",
+        "project_id": st.secrets["project_id"],
+        "private_key_id": st.secrets["private_key_id"],
+        "private_key": st.secrets["private_key"].replace('\\n', '\n'),
+        "client_email": st.secrets["client_email"],
+        "client_id": st.secrets["client_id"],
+        "auth_uri": st.secrets["auth_uri"],
+        "token_uri": st.secrets["token_uri"],
+        "auth_provider_x509_cert_url": st.secrets["auth_provider_x509_cert_url"],
+        "client_x509_cert_url": st.secrets["client_x509_cert_url"],
+        "universe_domain": st.secrets["universe_domain"]
+    })
+    firebase_admin.initialize_app(cred)
+initialize_app(cred , {"storageBucket": "amcgi-bulletin.appspot.com"})
 bucket = storage.bucket()
 
 # Streamlit 페이지 설정
