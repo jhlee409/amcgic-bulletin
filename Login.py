@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import json
 from datetime import datetime
-from firebase import firebase  # firebase 라이브러리 필요 (pip install python-firebase)
+from firebase import firebase
 import os
 
 st.set_page_config(page_title="AMC GI C", layout="wide")
