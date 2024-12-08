@@ -1,11 +1,15 @@
 import streamlit as st
-import requests
 import json
 from datetime import datetime
-from firebase import firebase
+from firebase_admin import credentials, storage, initialize_app
 import os
 
 st.set_page_config(page_title="AMC GI C", layout="wide")
+
+# Firebase 초기화
+cred = credentials.Certificate("path/to/your/firebase_credentials.json")  # Firebase 서비스 계정 키 파일 경로
+initialize_app(cred, {"storageBucket": "your-project-id.appspot.com"})
+bucket = storage.bucket()
 
 # Streamlit 페이지 설정
 st.title("서울 아산병원 GI 상부 게시판")
@@ -14,7 +18,7 @@ st.markdown(
     '''
     1. 이 게시판은 서울 아산병원 GI 상부 전용 게시판입니다.
     1. GI 상부의 교육 관련 공지사항 전달과 문서 자료 제공을 위한 공간입니다. 일반 공지는 취급하지 않습니다.
-    1. 처음 접속하는 선생님은 반드시 게시판에 실명으로 접속확인을 위한 댓글을 남겨주세요
+    1. 처음 접속하는 선생님은 반드시 게시판에 실명으로 접속확인을 위한 댓글을 남겨주세요.
     '''
 )
 st.divider()
@@ -23,12 +27,6 @@ st.divider()
 email = st.text_input("Email (예: amcgi)")
 password = st.text_input("Password (예: 3180)", type="password")
 name = st.text_input("Your Name (예: 홍길동)")
-
-# Firebase 초기화 (Firebase 설정 필요)
-firebase_storage_url = st.secrets["FIREBASE_STORAGE_URL"]
-firebase_api_key = st.secrets["FIREBASE_API_KEY"]
-
-firebase_db = firebase.FirebaseApplication(firebase_storage_url, None)
 
 # 로그인 버튼
 if st.button("Login"):
@@ -52,9 +50,8 @@ if st.button("Login"):
 
             # Firebase Storage에 업로드
             try:
-                firebase_path = f"/users/{filename}"
-                with open(filename, "rb") as file:
-                    firebase_db.put(firebase_path, filename, file.read(), params={"uploadType": "media"})
+                blob = bucket.blob(f"users/{filename}")
+                blob.upload_from_filename(filename)
                 st.success(f"{filename} 파일이 성공적으로 Firebase Storage에 업로드되었습니다.")
             except Exception as e:
                 st.error("Firebase 업로드 중 오류가 발생했습니다: " + str(e))
@@ -70,5 +67,3 @@ if "logged_in" in st.session_state and st.session_state['logged_in']:
     if st.sidebar.button("Logout"):
         st.session_state['logged_in'] = False
         st.success("로그아웃 되었습니다.")
-        # 필요시 추가적인 세션 상태 초기화 코드
-        # 예: del st.session_state['logged_in']
