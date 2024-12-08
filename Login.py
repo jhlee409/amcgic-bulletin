@@ -27,9 +27,9 @@ if not firebase_admin._apps:
     firebase_admin.initialize_app(cred)
     initialize_app(cred , {"storageBucket": "amcgi-bulletin.appspot.com"})
     
-# Firebase Storage 버킷 참조
-bucket_name = 'amcgi-bulletin.appspot.com'
-bucket = storage.bucket(bucket_name)
+    # Firebase Storage 버킷 참조
+    bucket_name = 'amcgi-bulletin.appspot.com'
+    bucket = storage.bucket(bucket_name)
 
 # Streamlit 페이지 설정
 st.title("서울 아산병원 GI 상부 게시판")
