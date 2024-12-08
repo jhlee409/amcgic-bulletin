@@ -60,7 +60,7 @@ if st.button("Login"):
             # 날짜와 사용자 이름 기반 텍스트 파일 생성
             current_date = datetime.now().strftime("%Y-%m-%d")
             filename = f"{name}_{current_date}.txt"
-            file_content = f"사용자: {name}\n날짜: {current_date}\n이메일: {email}"
+            file_content = f"사용자: {name}\n날짜: {current_date}\n"
 
             # 파일 저장
             with open(filename, "w", encoding="utf-8") as file:
