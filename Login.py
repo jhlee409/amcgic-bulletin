@@ -25,8 +25,8 @@ if not firebase_admin._apps:
         "universe_domain": st.secrets["universe_domain"]
     })
     firebase_admin.initialize_app(cred)
-initialize_app(cred , {"storageBucket": "amcgi-bulletin.appspot.com"})
-bucket = storage.bucket()
+    initialize_app(cred , {"storageBucket": "amcgi-bulletin.appspot.com"})
+    bucket = storage.bucket()
 
 # Streamlit 페이지 설정
 st.title("서울 아산병원 GI 상부 게시판")
