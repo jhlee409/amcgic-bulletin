@@ -36,7 +36,7 @@ st.markdown(
     '''
     1. 이 게시판은 서울 아산병원 GI 상부 전용 게시판입니다.
     1. GI 상부의 교육 관련 공지사항 전달과 문서 자료 제공을 위한 공간입니다. 일반 공지는 취급하지 않습니다.
-    1. 처음 접속하는 선생님은 반드시 게시판에 실명으로 접속확인을 위한 댓글을 남겨주세요.
+    1. 이름은 게시판에 접속하셨는지 확인하는 자료이므로 반드시 기입해 주세요.
     '''
 )
 st.divider()
@@ -44,7 +44,7 @@ st.divider()
 # 사용자 입력
 ID = st.text_input("ID")
 password = st.text_input("Password", type="password")
-name = st.text_input("Your Name (예: 홍길동)")
+name = st.text_input("Your Name (예: R3, F1, or F2C 홍길동)")
 
 # 로그인 버튼
 if st.button("Login"):
