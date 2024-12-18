@@ -44,7 +44,8 @@ st.divider()
 # 사용자 입력
 ID = st.text_input("ID")
 password = st.text_input("Password", type="password")
-name = st.text_input("Your Name (예: R3, F1, or F2C 홍길동)")
+name = st.text_input("Your Name (예: 홍길동)")
+position = st.selectbox("Position", ["Staff", "Fellow", "Resident", "Student"])
 
 # 로그인 버튼
 if st.button("Login"):
@@ -56,11 +57,12 @@ if st.button("Login"):
             st.session_state['logged_in'] = True
             st.session_state['user_ID'] = ID
             st.session_state['user_name'] = name
+            st.session_state['user_position'] = position
             
             # 날짜와 사용자 이름 기반 텍스트 파일 생성
             current_date = datetime.now().strftime("%Y-%m-%d")
-            filename = f"{name}_{current_date}.txt"
-            file_content = f"사용자: {name}\n날짜: {current_date}\n"
+            filename = f"{position}*{name}*{current_date}"
+            file_content = f"사용자: {name}\n직급: {position}\n날짜: {current_date}\n"
 
             # 파일 저장
             with open(filename, "w", encoding="utf-8") as file:
