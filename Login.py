@@ -48,12 +48,27 @@ name = st.text_input("Your Name (예: 홍길동)")
 position = st.selectbox("Position", ["Select Position", "Staff", "F1", "F2 ", "R3", "Student"])
 password = st.text_input("Password", type="password")
 
-# 로그인 버튼
-if st.button("Login"):
-    if password == "3180":
-        if name.strip() == "":
-            st.error("사용자 이름을 입력하세요")
-        else:
+# 입력 검증
+show_login_button = True
+if name.strip() == "":
+    st.error("한글 이름을 입력해 주세요")
+    show_login_button = False
+elif not any(ord(char) >= 0xAC00 and ord(char) <= 0xD7A3 for char in name):
+    st.error("한글 이름을 입력해 주세요")
+    show_login_button = False
+
+if position == "Select Position":
+    st.error("position을 선택해 주세요")
+    show_login_button = False
+
+if password.strip() == "":
+    st.error("비밀번호를 입력해 주세요")
+    show_login_button = False
+
+# 모든 조건이 충족되면 로그인 버튼 표시
+if show_login_button:
+    if st.button("Login"):
+        if password == "3180":
             st.success(f"로그인에 성공하셨습니다. 이제 왼쪽의 메뉴를 이용하실 수 있습니다.")
             st.session_state['logged_in'] = True
             st.session_state['user_name'] = name
@@ -76,8 +91,8 @@ if st.button("Login"):
                     blob.upload_from_filename(temp_file_path)
                 except Exception as e:
                     st.error("Firebase 업로드 중 오류가 발생했습니다: " + str(e))
-    else:
-        st.error("로그인에 실패했습니다. 이름, 직급, 비밀번호를 확인하세요.")
+        else:
+            st.error("로그인에 실패했습니다. 비밀번호를 확인하세요.")
 
 # 로그아웃 버튼
 if "logged_in" in st.session_state and st.session_state['logged_in']:
