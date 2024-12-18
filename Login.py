@@ -55,19 +55,25 @@ def is_korean_name(name):
 
 # 입력 유효성 검사
 is_valid = True
-if position == "Select Position":
-    st.error("position을 선택해 주세요")
-    is_valid = False
+
 if not name or not is_korean_name(name):
     st.error("한글 이름을 입력해 주세요")
+    is_valid = False
+if position == "Select Position":
+    st.error("position을 선택해 주세요")
     is_valid = False
 if not password:
     st.error("비밀번호를 입력해 주세요")
     is_valid = False
 
 # 로그인 버튼
-if is_valid and st.button("Login"):
-    if password == "3180":
+login_button = st.button("Login")
+if login_button:
+    if not is_valid:
+        st.error("모든 정보를 올바르게 입력해주세요")
+    elif password != "3180":
+        st.error("비밀번호가 올바르지 않습니다")
+    else:
         st.success(f"로그인에 성공하셨습니다. 이제 왼쪽의 메뉴를 이용하실 수 있습니다.")
         st.session_state['logged_in'] = True
         st.session_state['user_name'] = name
@@ -90,8 +96,6 @@ if is_valid and st.button("Login"):
                 blob.upload_from_filename(temp_file_path)
             except Exception as e:
                 st.error("Firebase 업로드 중 오류가 발생했습니다: " + str(e))
-    else:
-        st.error("로그인에 실패했습니다. 이름, 직급, 비밀번호를 확인하세요.")
 
 # 로그아웃 버튼
 if "logged_in" in st.session_state and st.session_state['logged_in']:
