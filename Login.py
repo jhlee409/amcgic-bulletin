@@ -43,20 +43,19 @@ st.markdown(
 st.divider()
 
 # 사용자 입력
-ID = st.text_input("ID")
-password = st.text_input("Password", type="password")
+
 name = st.text_input("Your Name (예: 홍길동)")
 position = st.selectbox("Position", ["Staff", "Fellow", "Resident", "Student"])
+password = st.text_input("Password", type="password")
 
 # 로그인 버튼
 if st.button("Login"):
-    if ID == "amcgi" and password == "3180":
+    if password == "3180":
         if name.strip() == "":
             st.error("사용자 이름을 입력하세요.")
         else:
             st.success(f"로그인에 성공하셨습니다. 이제 왼쪽의 메뉴를 이용하실 수 있습니다.")
             st.session_state['logged_in'] = True
-            st.session_state['user_ID'] = ID
             st.session_state['user_name'] = name
             st.session_state['user_position'] = position
             
@@ -78,7 +77,7 @@ if st.button("Login"):
                 except Exception as e:
                     st.error("Firebase 업로드 중 오류가 발생했습니다: " + str(e))
     else:
-        st.error("로그인에 실패했습니다. ID 또는 비밀번호를 확인하세요.")
+        st.error("로그인에 실패했습니다. 이름, 직급, 비밀번호를 확인하세요.")
 
 # 로그아웃 버튼
 if "logged_in" in st.session_state and st.session_state['logged_in']:
