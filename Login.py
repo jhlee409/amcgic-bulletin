@@ -4,6 +4,7 @@ from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials, storage
 import os
+import tempfile
 
 st.set_page_config(page_title="AMC GI C", layout="wide")
 
@@ -64,20 +65,18 @@ if st.button("Login"):
             filename = f"{position}*{name}*{current_date}"
             file_content = f"사용자: {name}\n직급: {position}\n날짜: {current_date}\n"
 
-            # 파일 저장
-            with open(filename, "w", encoding="utf-8") as file:
-                file.write(file_content)
+            # 임시 디렉토리에 파일 저장
+            with tempfile.TemporaryDirectory() as temp_dir:
+                temp_file_path = os.path.join(temp_dir, filename)
+                with open(temp_file_path, "w", encoding="utf-8") as file:
+                    file.write(file_content)
 
-            # Firebase Storage에 업로드
-            try:
-                blob = bucket.blob(f"log_bulletin/{filename}")
-                blob.upload_from_filename(filename)
-            except Exception as e:
-                st.error("Firebase 업로드 중 오류가 발생했습니다: " + str(e))
-            finally:
-                # 로컬 파일 삭제
-                if os.path.exists(filename):
-                    os.remove(filename)
+                # Firebase Storage에 업로드
+                try:
+                    blob = bucket.blob(f"log_bulletin/{filename}")
+                    blob.upload_from_filename(temp_file_path)
+                except Exception as e:
+                    st.error("Firebase 업로드 중 오류가 발생했습니다: " + str(e))
     else:
         st.error("로그인에 실패했습니다. ID 또는 비밀번호를 확인하세요.")
 
