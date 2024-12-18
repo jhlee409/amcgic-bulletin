@@ -44,70 +44,63 @@ st.markdown(
 st.divider()
 
 # 세션 상태 초기화
-if 'name' not in st.session_state:
-    st.session_state.name = ""
-if 'position' not in st.session_state:
-    st.session_state.position = "Select Position"
 if 'logged_in' not in st.session_state:
     st.session_state.logged_in = False
 
-# 사용자 입력
-name = st.text_input("Your Name (예: 홍길동)", key="name_input", value=st.session_state.name)
-position = st.selectbox("Position", 
-    ["Select Position", "Staff", "F1", "F2 ", "R3", "Student"],
-    key="position_input",
-    index=["Select Position", "Staff", "F1", "F2 ", "R3", "Student"].index(st.session_state.position))
-password = st.text_input("Password", type="password", key="password_input")
+# 로그인 상태가 아닐 때만 로그인 폼 표시
+if not st.session_state.logged_in:
+    # 사용자 입력
+    name = st.text_input("Your Name (예: 홍길동)")
+    position = st.selectbox("Position", ["Select Position", "Staff", "F1", "F2 ", "R3", "Student"])
+    password = st.text_input("Password", type="password")
 
-# 한글 이름 확인 함수
-def is_korean_name(name):
-    return bool(re.match('^[가-힣]+$', name.strip()))
+    # 한글 이름 확인 함수
+    def is_korean_name(name):
+        return bool(re.match('^[가-힣]+$', name.strip()))
 
-# 입력 유효성 검사
-is_valid = True
+    # 로그인 버튼
+    if st.button("Login"):
+        # 입력 유효성 검사
+        if not name or not is_korean_name(name):
+            st.error("한글 이름을 입력해 주세요")
+        elif position == "Select Position":
+            st.error("position을 선택해 주세요")
+        elif not password:
+            st.error("비밀번호를 입력해 주세요")
+        elif password != "3180":
+            st.error("비밀번호가 올바르지 않습니다")
+        else:
+            st.session_state.logged_in = True
+            st.session_state.user_name = name
+            st.session_state.user_position = position
+            st.success(f"로그인에 성공하셨습니다. 이제 왼쪽의 메뉴를 이용하실 수 있습니다.")
+            
+            # 날짜와 사용자 이름 기반 텍스트 파일 생성
+            current_date = datetime.now().strftime("%Y-%m-%d")
+            filename = f"{position}*{name}*{current_date}"
+            file_content = f"사용자: {name}\n직급: {position}\n날짜: {current_date}\n"
 
-if not name or not is_korean_name(name):
-    st.error("한글 이름을 입력해 주세요")
-    is_valid = False
-if position == "Select Position":
-    st.error("position을 선택해 주세요")
-    is_valid = False
-if not password:
-    st.error("비밀번호를 입력해 주세요")
-    is_valid = False
+            # 임시 디렉토리에 파일 저장
+            with tempfile.TemporaryDirectory() as temp_dir:
+                temp_file_path = os.path.join(temp_dir, filename)
+                with open(temp_file_path, "w", encoding="utf-8") as file:
+                    file.write(file_content)
 
-# 로그인 버튼
-if st.button("Login", key="login_button"):
-    if not is_valid:
-        st.error("모든 정보를 올바르게 입력해주세요")
-    elif password != "3180":
-        st.error("비밀번호가 올바르지 않습니다")
-    else:
-        st.session_state.name = name
-        st.session_state.position = position
-        st.session_state.logged_in = True
-        st.success(f"로그인에 성공하셨습니다. 이제 왼쪽의 메뉴를 이용하실 수 있습니다.")
-        
-        # 날짜와 사용자 이름 기반 텍스트 파일 생성
-        current_date = datetime.now().strftime("%Y-%m-%d")
-        filename = f"{position}*{name}*{current_date}"
-        file_content = f"사용자: {name}\n직급: {position}\n날짜: {current_date}\n"
-
-        # 임시 디렉토리에 파일 저장
-        with tempfile.TemporaryDirectory() as temp_dir:
-            temp_file_path = os.path.join(temp_dir, filename)
-            with open(temp_file_path, "w", encoding="utf-8") as file:
-                file.write(file_content)
-
-            # Firebase Storage에 업로드
-            try:
-                blob = bucket.blob(f"log_bulletin/{filename}")
-                blob.upload_from_filename(temp_file_path)
-            except Exception as e:
-                st.error("Firebase 업로드 중 오류가 발생했습니다: " + str(e))
+                # Firebase Storage에 업로드
+                try:
+                    blob = bucket.blob(f"log_bulletin/{filename}")
+                    blob.upload_from_filename(temp_file_path)
+                except Exception as e:
+                    st.error("Firebase 업로드 중 오류가 발생했습니다: " + str(e))
+            
+            # 로그인 성공 후 페이지 새로고침
+            st.experimental_rerun()
 
 # 로그아웃 버튼
-if "logged_in" in st.session_state and st.session_state['logged_in']:
+if st.session_state.logged_in:
     if st.sidebar.button("Logout"):
-        st.session_state['logged_in'] = False
+        st.session_state.logged_in = False
+        st.session_state.user_name = ""
+        st.session_state.user_position = "Select Position"
         st.success("로그아웃 되었습니다.")
+        st.experimental_rerun()
