@@ -5,6 +5,7 @@ import firebase_admin
 from firebase_admin import credentials, storage
 import os
 import tempfile
+import re
 
 st.set_page_config(page_title="AMC GI C")
 
@@ -48,34 +49,47 @@ name = st.text_input("Your Name (예: 홍길동)")
 position = st.selectbox("Position", ["Select Position", "Staff", "F1", "F2 ", "R3", "Student"])
 password = st.text_input("Password", type="password")
 
+# 한글 이름 확인 함수
+def is_korean_name(name):
+    return bool(re.match('^[가-힣]+$', name.strip()))
+
+# 입력 유효성 검사
+is_valid = True
+if position == "Select Position":
+    st.error("position을 선택해 주세요")
+    is_valid = False
+if not name or not is_korean_name(name):
+    st.error("한글 이름을 입력해 주세요")
+    is_valid = False
+if not password:
+    st.error("비밀번호를 입력해 주세요")
+    is_valid = False
+
 # 로그인 버튼
-if st.button("Login"):
+if is_valid and st.button("Login"):
     if password == "3180":
-        if name.strip() == "":
-            st.error("사용자 이름을 입력하세요.")
-        else:
-            st.success(f"로그인에 성공하셨습니다. 이제 왼쪽의 메뉴를 이용하실 수 있습니다.")
-            st.session_state['logged_in'] = True
-            st.session_state['user_name'] = name
-            st.session_state['user_position'] = position
-            
-            # 날짜와 사용자 이름 기반 텍스트 파일 생성
-            current_date = datetime.now().strftime("%Y-%m-%d")
-            filename = f"{position}*{name}*{current_date}"
-            file_content = f"사용자: {name}\n직급: {position}\n날짜: {current_date}\n"
+        st.success(f"로그인에 성공하셨습니다. 이제 왼쪽의 메뉴를 이용하실 수 있습니다.")
+        st.session_state['logged_in'] = True
+        st.session_state['user_name'] = name
+        st.session_state['user_position'] = position
+        
+        # 날짜와 사용자 이름 기반 텍스트 파일 생성
+        current_date = datetime.now().strftime("%Y-%m-%d")
+        filename = f"{position}*{name}*{current_date}"
+        file_content = f"사용자: {name}\n직급: {position}\n날짜: {current_date}\n"
 
-            # 임시 디렉토리에 파일 저장
-            with tempfile.TemporaryDirectory() as temp_dir:
-                temp_file_path = os.path.join(temp_dir, filename)
-                with open(temp_file_path, "w", encoding="utf-8") as file:
-                    file.write(file_content)
+        # 임시 디렉토리에 파일 저장
+        with tempfile.TemporaryDirectory() as temp_dir:
+            temp_file_path = os.path.join(temp_dir, filename)
+            with open(temp_file_path, "w", encoding="utf-8") as file:
+                file.write(file_content)
 
-                # Firebase Storage에 업로드
-                try:
-                    blob = bucket.blob(f"log_bulletin/{filename}")
-                    blob.upload_from_filename(temp_file_path)
-                except Exception as e:
-                    st.error("Firebase 업로드 중 오류가 발생했습니다: " + str(e))
+            # Firebase Storage에 업로드
+            try:
+                blob = bucket.blob(f"log_bulletin/{filename}")
+                blob.upload_from_filename(temp_file_path)
+            except Exception as e:
+                st.error("Firebase 업로드 중 오류가 발생했습니다: " + str(e))
     else:
         st.error("로그인에 실패했습니다. 이름, 직급, 비밀번호를 확인하세요.")
 
