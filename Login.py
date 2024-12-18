@@ -6,7 +6,7 @@ from firebase_admin import credentials, storage
 import os
 import tempfile
 
-st.set_page_config(page_title="AMC GI C", layout="wide")
+st.set_page_config(page_title="AMC GI C")
 
 # Firebase 초기화
 if not firebase_admin._apps:
