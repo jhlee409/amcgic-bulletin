@@ -52,7 +52,7 @@ password = st.text_input("Password", type="password")
 if st.button("Login"):
     if password == "3180":
         if name.strip() == "":
-            st.error("사용자 이름을 입력하세요.")
+            st.error("사용자 이름을 입력하세요")
         else:
             st.success(f"로그인에 성공하셨습니다. 이제 왼쪽의 메뉴를 이용하실 수 있습니다.")
             st.session_state['logged_in'] = True
