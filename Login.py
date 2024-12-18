@@ -43,11 +43,21 @@ st.markdown(
 )
 st.divider()
 
-# 사용자 입력
+# 세션 상태 초기화
+if 'name' not in st.session_state:
+    st.session_state.name = ""
+if 'position' not in st.session_state:
+    st.session_state.position = "Select Position"
+if 'logged_in' not in st.session_state:
+    st.session_state.logged_in = False
 
-name = st.text_input("Your Name (예: 홍길동)")
-position = st.selectbox("Position", ["Select Position", "Staff", "F1", "F2 ", "R3", "Student"])
-password = st.text_input("Password", type="password")
+# 사용자 입력
+name = st.text_input("Your Name (예: 홍길동)", key="name_input", value=st.session_state.name)
+position = st.selectbox("Position", 
+    ["Select Position", "Staff", "F1", "F2 ", "R3", "Student"],
+    key="position_input",
+    index=["Select Position", "Staff", "F1", "F2 ", "R3", "Student"].index(st.session_state.position))
+password = st.text_input("Password", type="password", key="password_input")
 
 # 한글 이름 확인 함수
 def is_korean_name(name):
@@ -67,17 +77,16 @@ if not password:
     is_valid = False
 
 # 로그인 버튼
-login_button = st.button("Login")
-if login_button:
+if st.button("Login", key="login_button"):
     if not is_valid:
         st.error("모든 정보를 올바르게 입력해주세요")
     elif password != "3180":
         st.error("비밀번호가 올바르지 않습니다")
     else:
+        st.session_state.name = name
+        st.session_state.position = position
+        st.session_state.logged_in = True
         st.success(f"로그인에 성공하셨습니다. 이제 왼쪽의 메뉴를 이용하실 수 있습니다.")
-        st.session_state['logged_in'] = True
-        st.session_state['user_name'] = name
-        st.session_state['user_position'] = position
         
         # 날짜와 사용자 이름 기반 텍스트 파일 생성
         current_date = datetime.now().strftime("%Y-%m-%d")
