@@ -58,21 +58,19 @@ if not st.session_state.logged_in:
     def is_korean_name(name):
         return bool(re.match('^[가-힣]+$', name.strip()))
 
-    # 로그인 버튼
-    if st.button("Login"):
-        # 입력 유효성 검사
-        if not name or not is_korean_name(name):
-            st.error("한글 이름을 입력해 주세요")
-        elif position == "Select Position":
-            st.error("position을 선택해 주세요")
-        elif not password:
-            st.error("비밀번호를 입력해 주세요")
-        elif password != "3180":
-            st.error("비밀번호가 올바르지 않습니다")
-        else:
-            st.session_state.logged_in = True
-            st.session_state.user_name = name
-            st.session_state.user_position = position
+    # 입력값 유효성 검사
+    is_valid_input = (
+        name and is_korean_name(name) and 
+        position != "Select Position" and 
+        password
+    )
+
+    # 로그인 버튼 - 모든 입력값이 유효할 때만 활성화
+    if st.button("Login", disabled=not is_valid_input):
+        if password == "3180":
+            st.session_state['logged_in'] = True
+            st.session_state['user_name'] = name
+            st.session_state['user_position'] = position
             st.success(f"로그인에 성공하셨습니다. 이제 왼쪽의 메뉴를 이용하실 수 있습니다.")
             
             # 날짜와 사용자 이름 기반 텍스트 파일 생성
