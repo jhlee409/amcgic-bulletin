@@ -45,7 +45,7 @@ st.divider()
 # 사용자 입력
 
 name = st.text_input("Your Name (예: 홍길동)")
-position = st.selectbox("Position", ["Select Position", "Staff", "F1", "F2 ", "R3", "Student"])
+position = st.selectbox("Select Position", ["", "Staff", "F1", "F2 ", "R3", "Student"])
 password = st.text_input("Password", type="password")
 
 # 입력 검증
@@ -57,7 +57,7 @@ elif not any(ord(char) >= 0xAC00 and ord(char) <= 0xD7A3 for char in name):
     st.error("한글 이름을 입력해 주세요")
     show_login_button = False
 
-if position == "Select Position":
+if position == "":
     st.error("position을 선택해 주세요")
     show_login_button = False
 
