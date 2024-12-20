@@ -36,8 +36,8 @@ st.header("Login page")
 st.markdown(
     '''
     1. 이 게시판은 서울 아산병원 GI 상부 전용 게시판입니다.
-    1. GI 상부의 교육 관련 공지사항 전달과 문서 자료 제공을 위한 공간입니다. 일반 공지는 취급하지 않습니다.
-    1. 이름은 게시판에 접속하셨는지 확인하는 자료이므로 반드시 기입해 주세요.
+    1. GI 상부의 교육 관련 공지사항 전달과 문서 자료 제공을 위한 공간입니다. 일반 진료 및 행정 공지는 취급하지 않습니다.
+    1. 한글 이름은 게시판에 접속하셨는지 확인하는 자료이므로 반드시 기입해 주세요.
     '''
 )
 st.divider()
@@ -90,7 +90,7 @@ if show_login_button:
                     blob = bucket.blob(f"log_bulletin/{filename}")
                     blob.upload_from_filename(temp_file_path)
                 except Exception as e:
-                    st.error("Firebase 업로드 중 오류가 발생했습니다: " + str(e))
+                    st.error("로그 자료 업로드 중 오류가 발생했습니다: " + str(e))
         else:
             st.error("로그인에 실패했습니다. 비밀번호를 확인하세요.")
 
