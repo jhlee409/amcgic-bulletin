@@ -29,7 +29,8 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
             1. 교육 과정은 MT(memory test), SHT(scope handling test), EMT(EGD method training), participation, performance test로 이 순서에 따라 진행됩니다.
             1. 훈련 프로그램 OT는 1번을 기본으로 하고, 필요에 따라 2번 반복하는 것이 원칙이니, 미리 알려주는 일정에 참여할 수 있도록 스케쥴을 조정하기 바랍니다.
             1. 훈련과정의 소개 프로그램은 [Sim Class](https://edu.amc.seoul.kr/)에 접속하면 시청할 수 있습니다. 구체적인 방법은 앞의 Home page를 참고하세요
-            1. 목표 달성 여부는 시험을 통해 확인하는데, 시험에는 교수님이 참관하시므로 열심히 훈련하기 바랍니다.
+            1. 목표 달성 여부는 https://egd-skill-evaluation.streamlit.app/ 에 접속하여 동영상을 올리면 자동적으로 합격 불합격을 판정합니다.
+            1. 합격된 경우만 자료가 교수진으로 전달됩니다. 합격할 때 까지 열심히 훈련하길 바랍니다.
             1. 시뮬레이션 센터의 여러 선생님들이 소화기의 요청에 의해 프로그램을 운영하시고 계십니다. 예의와 존중을 잊지 말기 바랍니다.               
         '''
         )
@@ -42,20 +43,11 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
             st.markdown(
                 '''
                 1. 이 과정은 내시경 수행 순서를 말로 외움으로써 실제 스코프를 잡고 훈련할 때 주의력이 분산되지 않도록 하는 목적으로 만들어진 프로그램입니다.
-                1. 첨부된 mt.doc 파일을 다운받아 모두 암기한 후 정해진 날에 교수님 앞에서 암기한 것을 구술하는 방식으로 시험을 보게 됩니다.
+                1. https://mt-results.streamlit.app/ 에 접속해서, 첨부된 검사 설명 문서와 이를 읽어주는 narration 파일을 다운받아 모두 암기합니다. 조사 빼고는 모두 외어야 합니다.
+                1. 그냥 막연하게 외우려면 쉽지 않습니다. 우선 전문가의 EGD 수행 해설 동영상 2개를 다운 받아 충분히 보세요 이해도 빨라지고, 암기에도 도움이 됩니다.
+                1. 다 암기 했다고 자신이 생기면 웹캠 앞에서 외우는 동영상을 녹화하고 이를 올리면 교수진이 평가하여 합격 불합격을 통보 하게 됩니다.
                 '''
             )
-        file_path = './pages/data/mt.doc'
-        if os.path.isfile(file_path):
-            btn = st.download_button(
-                label="다운로드 1",
-                data=open(file_path, "rb").read(),
-                key="contents_download_button_1",
-                file_name=os.path.basename(file_path),
-                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-            )
-        else:
-            st.warning("파일을 찾을 수 없습니다. 'contents.xlsx' 파일이 현재 폴더에 존재해야 합니다.")
             
         st.subheader("Scope Handling Test")
         with st.expander("Scope Handling Test 내용을 보려면 여기를 눌러주세요"):
