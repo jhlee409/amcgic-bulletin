@@ -29,15 +29,15 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
             1. 교육 과정은 MT(memory test), SHT(scope handling test), EMT(EGD method training), participation, performance test로 이 순서에 따라 진행됩니다.
             1. 훈련 프로그램 OT는 1번을 기본으로 하고, 필요에 따라 2번 반복하는 것이 원칙이니, 미리 알려주는 일정에 참여할 수 있도록 스케쥴을 조정하기 바랍니다.
             1. 훈련과정의 소개 프로그램은 [Sim Class](https://edu.amc.seoul.kr/)에 접속하면 시청할 수 있습니다. 구체적인 방법은 앞의 Home page를 참고하세요
-            1. 목표 달성 여부는 https://egd-skill-evaluation.streamlit.app/ 에 접속하여 동영상을 올리면 자동적으로 합격 불합격을 판정합니다.
-            1. 합격된 경우만 자료가 교수진으로 전달됩니다. 합격할 때 까지 열심히 훈련하길 바랍니다.
             1. 시뮬레이션 센터의 여러 선생님들이 소화기의 요청에 의해 프로그램을 운영하시고 계십니다. 예의와 존중을 잊지 말기 바랍니다.               
         '''
         )
     with tab2:
         st.subheader("내과 3년차 proper 진단 EGD 교육 프로그램 설명")
         st.markdown("상세한 내용은 [Sim Class](https://edu.amc.seoul.kr/)에 있는 소개 동영상을 시청하기 바랍니다.")
+        
         st.divider()
+
         st.subheader("Memory Test")
         with st.expander("Memory Test 내용을 보려면 여기를 눌러주세요"):
             st.markdown(
@@ -66,7 +66,9 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
                 1. 이 과정은 인체와 똑같은 3차원 구조와 경도를 가진 실리콘 모형을 대상으로 EGD를 체계적으로 수행하는 훈련을 하는 과정입니다.
                 1. 여러분이 암기한 검사 순서를 이 시뮬레이터를 대상으로 해 보면서 숙련되도록 하는데, 중요한 점은 천천히 같은 속도록 사진도 찍어가며 정해진 순서를 지키는 것입니다.
                 1. 전체 검사 시간은 5분에서 5분30초 사이로, 사진은 62장에서 66장 사이의 사진을 찍어야 합니다.
-                1. 나중에 교수님이 보는 앞에서 시험을 보게되니 열심히 하기 바랍니다.
+                1. 자신이 있으면 https://egd-skill-evaluation.streamlit.app/ 에 수행 동영상을 올립니다.
+                1. 머신 러닝 프로그램이 검사 수행 숙련도에 따라 합격과 불합격을 판정합니다. 합격이면 자료가 교수진에게 자동으로 전송됩니다.
+                1. 불합격이면 자료가 전송되지 않습니다. 열심히 훈련하여 모두 합격을 받아야 합니다.
                 '''
             )
         st.subheader("Participation")
