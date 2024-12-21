@@ -75,7 +75,7 @@ if show_login_button:
             st.session_state['user_position'] = position
             
             # 날짜와 사용자 이름 기반 텍스트 파일 생성
-            current_date = datetime.now().strftime("%Y-%m-%d")
+            current_date = datetime.now(timezone('Asia/Seoul')).strftime("%Y-%m-%d")
             filename = f"{position}*{name}*{current_date}"
             file_content = f"사용자: {name}\n직급: {position}\n날짜: {current_date}\n"
 
