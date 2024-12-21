@@ -50,18 +50,19 @@ position = st.selectbox("Select Position", ["", "Staff", "F1", "F2 ", "R3", "Stu
 password = st.text_input("Password", type="password")
 
 # 입력 검증
-if not name.strip():
+show_login_button = True
+if name.strip() == "":
     st.error("한글 이름을 입력해 주세요")
     show_login_button = False
-elif not any(0xAC00 <= ord(char) <= 0xD7A3 for char in name):
+elif not any(ord(char) >= 0xAC00 and ord(char) <= 0xD7A3 for char in name):
     st.error("한글 이름을 입력해 주세요")
     show_login_button = False
 
-if not position:
+if position == "":
     st.error("position을 선택해 주세요")
     show_login_button = False
 
-if not password.strip():
+if password.strip() == "":
     st.error("비밀번호를 입력해 주세요")
     show_login_button = False
 
