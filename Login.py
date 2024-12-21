@@ -3,7 +3,7 @@ import firebase_admin
 from firebase_admin import credentials, storage
 import os
 import tempfile
-from datetime import datetime, timezone
+from datetime import datetime
 from pytz import timezone
 
 st.set_page_config(page_title="AMC GI C")
@@ -42,25 +42,19 @@ st.markdown(
 )
 st.divider()
 
-# 초기화
-if "logged_in" not in st.session_state:
-    st.session_state["logged_in"] = False
-if "password" not in st.session_state:
-    st.session_state["password"] = ""
+# 사용자 입력
 
-# 입력 필드
-name = st.text_input("이름", value="")
-position = st.text_input("직급", value="")
-password = st.text_input("비밀번호", value=st.session_state["password"], type="password")
-st.session_state["password"] = password
+name = st.text_input("Your Name (예: 홍길동)")
+position = st.selectbox("Select Position", ["", "Staff", "F1", "F2 ", "R3", "Student"])
+password = st.text_input("Password", type="password")
 
-# 검증
+# 입력 검증
 show_login_button = True
 
 if not name.strip():
     st.error("한글 이름을 입력해 주세요")
     show_login_button = False
-if name.strip() and not any(0xAC00 <= ord(char) <= 0xD7A3 for char in name):
+elif not any(0xAC00 <= ord(char) <= 0xD7A3 for char in name):
     st.error("한글 이름을 입력해 주세요")
     show_login_button = False
 
@@ -72,11 +66,7 @@ if not password.strip():
     st.error("비밀번호를 입력해 주세요")
     show_login_button = False
 
-# 상태 확인
-st.write("Session State:", st.session_state)
-st.write("Final show_login_button state:", show_login_button)
-
-# 로그인 버튼
+# 모든 조건이 충족되면 로그인 버튼 표시
 if show_login_button:
     if st.button("Login"):
         if password == "3180":
@@ -84,18 +74,19 @@ if show_login_button:
             st.session_state['logged_in'] = True
             st.session_state['user_name'] = name
             st.session_state['user_position'] = position
-
-            # 로그 파일 생성 및 업로드
-            current_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-            filename = f"{position}*{name}*{current_date}.txt"
+            
+            # 날짜와 사용자 이름 기반 텍스트 파일 생성
+            current_date = datetime.now(timezone('Asia/Seoul')).strftime("%Y-%m-%d")
+            filename = f"{position}*{name}*{current_date}"
             file_content = f"사용자: {name}\n직급: {position}\n날짜: {current_date}\n"
 
+            # 임시 디렉토리에 파일 저장
             with tempfile.TemporaryDirectory() as temp_dir:
                 temp_file_path = os.path.join(temp_dir, filename)
                 with open(temp_file_path, "w", encoding="utf-8") as file:
                     file.write(file_content)
 
-                # Firebase Storage 업로드 (예외 처리)
+                # Firebase Storage에 업로드
                 try:
                     blob = bucket.blob(f"log_bulletin/{filename}")
                     blob.upload_from_filename(temp_file_path)
