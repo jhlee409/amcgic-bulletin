@@ -77,8 +77,8 @@ if show_login_button:
             
             # 날짜와 사용자 이름 기반 텍스트 파일 생성
             current_date = datetime.now(timezone('Asia/Seoul')).strftime("%Y-%m-%d")
-            filename = f"{position}*{name}*{current_date}"
-            file_content = f"직급: {position}\n사용자: {name}\n날짜: {current_date}\n"
+            filename = f"{position}*{name}*bulletin"
+            file_content = f"직급: {position}\n사용자: {name}\n"
 
             # 임시 디렉토리에 파일 저장
             with tempfile.TemporaryDirectory() as temp_dir:
