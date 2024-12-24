@@ -72,13 +72,13 @@ if show_login_button:
         if password == "3180":
             st.success(f"로그인에 성공하셨습니다. 이제 왼쪽의 메뉴를 이용하실 수 있습니다.")
             st.session_state['logged_in'] = True
-            st.session_state['user_name'] = name
             st.session_state['user_position'] = position
+            st.session_state['user_name'] = name           
             
             # 날짜와 사용자 이름 기반 텍스트 파일 생성
             current_date = datetime.now(timezone('Asia/Seoul')).strftime("%Y-%m-%d")
             filename = f"{position}*{name}*{current_date}"
-            file_content = f"사용자: {name}\n직급: {position}\n날짜: {current_date}\n"
+            file_content = f"직급: {position}\n사용자: {name}\n날짜: {current_date}\n"
 
             # 임시 디렉토리에 파일 저장
             with tempfile.TemporaryDirectory() as temp_dir:
