@@ -31,8 +31,8 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
             1. 전공의 3년차에게 훈련을 위해 내시경 과정 일부를 넘겨 줄 경우, 반드시 진정이 잘된 환자일 경우에만 넘겨 주세요. 비진정 환자에서 그런 일이 벌어지면 책임을 묻겠습니다.
             1. 교육위원에서 인정하지 않은 외부 의사를 대상으로 전임의가 허락없이 내시경 교육을 하는 것은 금지입니다. 필요 시 반드시 교육 위원회의 허락을 받아야 합니다.
             1. 원칙적으로 고위험 치료내시경(EMR, ESD 등)은 반드시 상급자의 감독하에 시행되어야 합니다. 담당 교수님의 허락없이 고위험 시술을 전임의가 혼자 수행하는 것은 금지입니다.
-            1. 수많은 교육 자료가 [GI training program](https://gi-training.streamlit.app/)에 있습니다. 잘 이용하세요.
-            1. GI training program는 출석 체크가 되므로, 끝낼 때는 반드시 왼쪽 아래 로그아웃 버튼을 눌러 종결하세요. 그냥 나가면 출석처리가 안됩니다.
+            1. 수많은 교육 자료가 [AMC GI 상부 Education Program](https://amcgic-training.streamlit.app/)에 있습니다. 잘 이용하세요.
+            1. AMC GI 상부 Education Program은 출석 체크가 되므로, 끝낼 때는 반드시 왼쪽 아래 로그아웃 버튼을 눌러 종결하세요. 그냥 나가면 출석처리가 안됩니다.
         '''
         )
 
@@ -69,7 +69,8 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
             st.markdown(
                 '''
                 1. chatgpt를 이용한 전형적인 소화기 환자의 chief complaint에 대한 병력 청취 훈련 프로그램입니다.
-                1. [GI training program](https://gi-training.streamlit.app/)에 접속하는데, ID는 이메일 주소, PW는 숫자와 알파벳 글자섞어서 8자이상의 PW를 이진혁 교수님에게 이메일로 보내어 허락받고 등록한 후 접속가능합니다.
+                1. [AMC GI 상부 Education Program](https://amcgic-training.streamlit.app/)에 접속하는데, ID는 이메일 주소, PW, 이름, 지위를 입력하고 로그인 합니다.
+                1. PW는 숫자와 알파벳 글자섞어서 8자이상의 PW를 이진혁 교수님에게 이메일로 보내어 허락받고 등록한 후 접속가능합니다.
                 1. 왼편 sidebar에서 AI patient Hx. taking 훈련 페이지를 선택한 후 그 아래에서 증례를 선정하고 한글 타이핑으로 질문하면 AI 환자가 적절한 대답을 하는 형식으로 진행됩니다.
                 1. 질문을 다 했으면 "궁금하신 점이 있으신가요"라고 AI 환자에게 질문하고 2 개의 질문을 받아 대답합니다.
                 1. AI의 두 가지 질문에 답하면 약 20-30초 기다렸다가 선생님이 질문하지 않았던 항목을 찾아 줍니다. 단 완전치는 않으니 참고만 하세요.
@@ -82,7 +83,7 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
             st.markdown(
                 '''
                 1. 전임의 1년차와 2년차가 알아야 할 대부분의 병변의 사진을 보고 진단을 훈련하는 프로그램입니다.(총 200여개의 증례 사진)
-                1. [GI training program](https://gi-training.streamlit.app/)에 접속하고, 등록했던 이메일 주소와 PW를 입력하면 됩니다.
+                1. [AMC GI 상부 Education Program](https://amcgic-training.streamlit.app/)에 접속하고, 등록했던 이메일 주소와 PW, 이름 , 지위를 입력하면 됩니다.
                 1. 사전에 이진혁 교수님에게 이메일 주소와 숫자 알파벳 글자를 혼용한 8자리의 PW를 등록해야 합니다.
                 1. 가장 먼저 왼쪽 sidebar에서 EGD Lesion Dx. 훈련 프로그램 페이지를 선택하고 아래에서 F1이나 F2를 선택합니다. 가능하면 F1, F2를 모두 공부하길 권합니다.
                 1. 다음 EGD 사진을 선택하면 증례 사진과 질문이 보입니다.
