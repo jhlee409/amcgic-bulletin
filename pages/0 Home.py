@@ -17,12 +17,12 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
         st.markdown(
             '''
                 ---------------------------------------------------------------------------------------------------------------------------------------------------------
-                1. 소화기 내시경 교육 동영상은 서울아산병원 시뮬레이션 센터 [Sim Class](https://edu.amc.seoul.kr/)와 [GI training programs](https://gi-training.streamlit.app/)에서 시청할 수 있습니다.
-                    * Sim Class ID와 PW는 각자 사번(ex: D240000)으로 설정되어 있습니다. 로그인 후 반드시 ★개인정보수정(e-mail 주소, 핸드폰번호, 영문명 등)★ 부탁드립니다. 
-                    * 로그인 및 Sim Class 관련 문의는 시뮬레이션센터 류수지(T.1018) 에게 아산웍스 또는 유선으로 문의바랍니다.
-                    * 필요한 동영상을 청취하면 자동으로 출석 처리 됩니다.
-                    * GI training programs에 로그인 하기 위해서는 이메일 주소를 ID로 알파벳 글자와 숫자 섞어서 8자 이상의 PW를 이진혁 교수에게 메일로 보내 허락을 받고 등록한 후 들어갈 수 있습니다.
-                    * GI training program는 출석 체크가 되므로, 끝낼 때는 반드시 왼쪽 아래 로그아웃 버튼을 눌러 종결하세요. 그냥 나가면 출석처리가 안됩니다.
+                1. 소화기 내시경 교육 동영상은 [AMC GI 상부 Simulator training](https://amcgic-simulator.streamlit.app/)와 [AMC GI 상부 Education Program](https://amcgic-training.streamlit.app/)에서 시청할 수 있습니다.
+                    * AMC GI 상부 Simulator training은 이름, 지위, 비번 3180 을 넣으면 이용할 수 있습니다.
+                    * 각종 시뮬에이터를 사용하는 EGD basic course와 관련된 교육 자료를 다운 받거나, 훈련 후 수행 동영상이나 결과 report를 업로드하는 웹페이지 입니다.
+                    * AMC GI 상부 Education Program에 로그인 하기 위해서는 이메일 주소를 ID로 알파벳 글자와 숫자 섞어서 8자 이상의 PW를 이진혁 교수에게 메일로 보내 허락을 받고 등록한 후 들어갈 수 있습니다.
+                    * AMC GI 상부 Education Program 웹페이지에는 소화기 내과 상부의 교육에 관련된 프로그램 모듈들이 있으므로 일정에 따라 학습하시면 됩니다.
+                    * AMC GI 상부 Education Program는 출석 체크가 되므로, 끝낼 때는 반드시 왼쪽 아래 로그아웃 버튼을 눌러 종결하세요. 그냥 나가면 출석처리가 안됩니다.
                 1. 소화기 전임의 공통 프로그램 페이지에 NBI 리뷰 논문 링크를 적어 놓았습니다. 반드시 공부하기 바랍니다.
                 '''
                 # 1. 전임의 외래 참관 (2024): 새로 추가, 소화기 전임의 1년차에게만 해당하는 교육 프로그램입니다.
