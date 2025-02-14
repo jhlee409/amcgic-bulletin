@@ -75,6 +75,8 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
                 '''
                 1. 치료 내시경을 하려면 전진을 제외한 모든 scope의 조작을 왼손으로만 할 수 있어야, 치료 도구를 오른손으로 쓸 수 있습니다.
                 1. 이 프로그램은 벽에 붙어 있는 단추를 왼손 조작만으로 정해진 시간에 떨어 뜨려야 합격하도록 고안된 시뮬레이터를 사용합니다.
+                1. https://amcgic-simulator.streamlit.app/ 의 LHT 페이지에서 LHT orientation 동영상을 시청하고, 훈련하면서 전문가 시범 동영상을 보면서 미러링을 하세요.
+                1. 기준에 통과한 동영상을 녹화해서 수행 동영상 업로드에 올리면 훈련이 종결됩니다.
                 '''
             )
         st.subheader("EGD variation 강의")
@@ -85,6 +87,7 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
                 1. 이 강의 동영상은 예를 들면 'pyloric ring을 통과하는데 잘 안된다'와 같은 다양하고 흔한 상황에서 전문가가 어떻게 하는지를 나래이션으로 설명하는 동영상클립들을 모아 놓는 프로그램입니다.
                 1. 강의 동영상은 [AMC GI 상부 Education Program](https://amcgic-training.streamlit.app/)에 올려져 있고, 보통은 5월이나 6월 정도면 절실하게 필요한 내용이 들어 있습니다.
                 1. 1년차 첫 달에는 더 기본적인 조작이 힘들어 이 동영상을 봐도 먼나라 얘기이고, 1년차 후반부에는 볼 필요가 없을 정도로 이미 숙련되어 있을 것이므로 꼭 필요한 때 찾아서 보기 바랍니다.
+                1. 특히 각 상황에 1번 동영상은 자세한 설명이 있는 동영상입니다. 이 1번 동영상은 모두 시청해야 합니다.
                 '''
             )
         st.subheader("Hemostasis simulator training")
@@ -93,7 +96,7 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
                 '''
                 1. AMC GI 에서 시행되는 지혈술 시뮬레이터 훈련 종목은, hemoclip, injection, APC, Nexpower spray, EVL  이렇게 5가지 입니다.
                 1. 7월 전반부에 주로 토요일 오후에 교육이 있습니다. 5개 방에서 모든 지혈술을 그 날 훈련하게 됩니다. 확정 날짜는 추후 통보됩니다.
-                1. 훈련 전 [AMC GI 상부 Education Program](https://amcgic-training.streamlit.app/)에 올려져 있는 EGD Hemostasis 강의 동영상을 충분히 보고 훈련에 임하기 바랍니다. 특정 종목에서는 협찬한 회사에서 사전 발표를 하는 경우도 있겠습니다.
+                1. 훈련 전 [AMC GI 상부 Education Program](https://amcgic-training.streamlit.app/)에 올려져 있는 5가지 지혈술에 대해 설명한 orientation 동영상을 모두 시청한 후 실습에 임해주세요. 실습날은 따로 자세한 설명을 하지 않습니다.
                 1. 5개 그룹으로 나누어서 한 방에 한 그룹이 들어가 훈련하고 로테이션 하는 체제로 진행합니다.
                 '''
             )
@@ -102,7 +105,7 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
             st.markdown(
                 '''
                 1. 9월 초에 PEG simulator를 가지고 직접 해보는 훈련이 있습니다. 대게는 토요일 오후에 시행하게 됩니다. 확정 날짜는 추후 통보됩니다.
-                1. 훈련 전 [AMC GI 상부 Education Program](https://amcgic-training.streamlit.app/)에 올려져 있는 PEG 강의 동영상을 충분히 보고 훈련에 임하기 바랍니다.
+                1. 훈련 전 [AMC GI 상부 Education Program](https://amcgic-training.streamlit.app/)에 올려져 있는 PEG simulator강의 동영상을 충분히 보고 훈련에 임하기 바랍니다.
                 1. 세 조로 나뉘어 각 방에서 시범을 보고 직접 해 보는 방식으로 진행됩니다.
                 '''
             )
