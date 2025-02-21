@@ -45,7 +45,7 @@ st.divider()
 # 사용자 입력
 
 name = st.text_input("Your Name (예: 홍길동)")
-position = st.selectbox("Select Position", ["", "Staff", "F1", "F2 ", "R3", "Student"])
+position = st.selectbox("Select Position", ["", "Staff", "F1", "F2 ", "R3", "Student", "신촌", "계명"])
 password = st.text_input("Password", type="password")
 
 # 입력 검증
