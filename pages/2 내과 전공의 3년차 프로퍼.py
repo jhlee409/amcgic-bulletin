@@ -59,6 +59,7 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
                 1. SHT 설명 및 시범 동영상은 [AMC GI 상부 Simulator training](https://amcgic-simulator.streamlit.app/)에서 시청하세요.
                 1. 적어도 이 과정은 이수해야 실제 내시경 검사에서 스코프를 잡을 수 있습니다. 환자 안전을 위해 그 전에는 참관만 하세요.
                 1. 자신이 생기면 수행과정을 동영상으로 녹화하여 SHT 수행 동영상 업로드에 올리면 됩니다.
+                '''
             )
         st.subheader("EGD Method Trainig")
         with st.expander("EGD Method Trainig 내용을 보려면 여기를 눌러주세요"):
