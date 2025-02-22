@@ -43,32 +43,32 @@ st.markdown(
 st.divider()
 
 # 사용자 입력
-
 name = st.text_input("Your Name (예: 홍길동)")
 position = st.selectbox("Select Position", ["", "Staff", "F1", "F2 ", "R3", "Student", "신촌", "계명"])
 password = st.text_input("Password", type="password")
 
-# 입력 검증
-show_login_button = True
+# 로그인 버튼
+if st.button("Login"):
+    # 입력 검증
+    validation_passed = True
+    
+    if not name.strip():
+        st.error("한글 이름을 입력해 주세요")
+        validation_passed = False
+    elif not any(0xAC00 <= ord(char) <= 0xD7A3 for char in name):
+        st.error("한글 이름을 입력해 주세요")
+        validation_passed = False
 
-if not name.strip():
-    st.error("한글 이름을 입력해 주세요")
-    show_login_button = False
-elif not any(0xAC00 <= ord(char) <= 0xD7A3 for char in name):
-    st.error("한글 이름을 입력해 주세요")
-    show_login_button = False
+    if not position.strip():
+        st.error("position을 선택해 주세요")
+        validation_passed = False
 
-if not position.strip():
-    st.error("position을 선택해 주세요")
-    show_login_button = False
+    if not password.strip():
+        st.error("비밀번호를 입력해 주세요")
+        validation_passed = False
 
-if not password.strip():
-    st.error("비밀번호를 입력해 주세요")
-    show_login_button = False
-
-# 모든 조건이 충족되면 로그인 버튼 표시
-if show_login_button:
-    if st.button("Login"):
+    # 모든 검증을 통과한 경우에만 로그인 처리
+    if validation_passed:
         if password == "3180":
             st.success(f"로그인에 성공하셨습니다. 이제 왼쪽의 메뉴를 이용하실 수 있습니다.")
             st.session_state['logged_in'] = True
