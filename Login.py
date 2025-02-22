@@ -55,9 +55,9 @@ if st.button("Login"):
     if not name.strip():
         st.error("한글 이름을 입력해 주세요")
         validation_passed = False
-    elif not any(0xAC00 <= ord(char) <= 0xD7A3 for char in name):
-        st.error("한글 이름을 입력해 주세요")
-        validation_passed = False
+    # elif not any(0xAC00 <= ord(char) <= 0xD7A3 for char in name):
+    #     st.error("한글 이름을 입력해 주세요")
+    #     validation_passed = False
 
     if not position.strip():
         st.error("position을 선택해 주세요")
