@@ -43,9 +43,10 @@ st.markdown(
 st.divider()
 
 # 사용자 입력
+password = st.text_input("Password", type="password")
 name = st.text_input("Your Name (예: 홍길동)")
 position = st.selectbox("Select Position", ["", "Staff", "F1", "F2 ", "R3", "Student", "신촌", "계명"])
-password = st.text_input("Password", type="password")
+
 
 # 로그인 버튼
 if st.button("Login"):
@@ -55,9 +56,9 @@ if st.button("Login"):
     if not name.strip():
         st.error("한글 이름을 입력해 주세요")
         validation_passed = False
-    # elif not any(0xAC00 <= ord(char) <= 0xD7A3 for char in name):
-    #     st.error("한글 이름을 입력해 주세요")
-    #     validation_passed = False
+    elif not any(0xAC00 <= ord(char) <= 0xD7A3 for char in name):
+        st.error("한글 이름을 입력해 주세요")
+        validation_passed = False
 
     if not position.strip():
         st.error("position을 선택해 주세요")
