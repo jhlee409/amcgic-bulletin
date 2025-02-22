@@ -43,9 +43,9 @@ st.markdown(
 st.divider()
 
 # 사용자 입력
-password = st.text_input("Password", type="password")
 name = st.text_input("Your Name (예: 홍길동)")
 position = st.selectbox("Select Position", ["", "Staff", "F1", "F2 ", "R3", "Student", "신촌", "계명"])
+password = st.text_input("Password", type="password")
 
 
 # 로그인 버튼
