@@ -124,13 +124,12 @@ if "logged_in" in st.session_state and st.session_state['logged_in']:
         logout_time = datetime.now(timezone('Asia/Seoul'))
         logout_time_str = logout_time.strftime("%Y_%m_%d_%H_%M_%S")
         
-        # 사용 시간 계산 (시간:분 형식)
+        # 사용 시간 계산 (분 단위로 환산)
         if 'login_time' in st.session_state:
             login_time = st.session_state['login_time']
             duration_seconds = (logout_time - login_time).total_seconds()
-            hours = int(duration_seconds // 3600)
-            minutes = int((duration_seconds % 3600) // 60)
-            duration_str = f"{hours}:{minutes:02d}"
+            # 총 분으로 환산 (소수점 버림)
+            total_minutes = int(duration_seconds // 60)
             
             # 로그아웃 및 사용 시간 로그 파일 생성
             position = st.session_state['user_position']
@@ -140,7 +139,7 @@ if "logged_in" in st.session_state and st.session_state['logged_in']:
             logout_file_content = f"{position}*{name}*logout*{logout_time_str}\n"
             
             duration_filename = f"{position}*{name}*duration"
-            duration_file_content = f"{position}*{name}*{duration_str}\n"
+            duration_file_content = f"{position}*{name}*{total_minutes}\n"  # 분 단위로 저장
             
             # 임시 디렉토리에 파일 저장 및 업로드
             with tempfile.TemporaryDirectory() as temp_dir:
