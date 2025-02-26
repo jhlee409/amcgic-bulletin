@@ -138,8 +138,10 @@ if "logged_in" in st.session_state and st.session_state['logged_in']:
             logout_filename = f"{position}*{name}*logout*{logout_time_str}"
             logout_file_content = f"{position}*{name}*logout*{logout_time_str}\n"
             
-            duration_filename = f"{position}*{name}*duration"
-            duration_file_content = f"{position}*{name}*{total_minutes}\n"  # 분 단위로 저장
+            # 현재 시간을 포함한 duration 파일명 생성
+            current_time_str = datetime.now(timezone('Asia/Seoul')).strftime("%Y_%m_%d_%H_%M_%S")
+            duration_filename = f"{position}*{name}*{total_minutes}*{current_time_str}"
+            duration_file_content = f"{position}*{name}*{total_minutes}*{current_time_str}\n"
             
             # 임시 디렉토리에 파일 저장 및 업로드
             with tempfile.TemporaryDirectory() as temp_dir:
@@ -161,7 +163,7 @@ if "logged_in" in st.session_state and st.session_state['logged_in']:
                     logout_blob_path = f"log_logout/{logout_filename}"
                     
                     # 사용 시간 로그 업로드 - 파일 내용을 파일 이름으로 사용
-                    duration_blob = bucket.blob(f"log_duration/{duration_file_content.strip()}")
+                    duration_blob = bucket.blob(f"log_duration/{duration_filename}")
                     duration_blob.upload_from_filename(duration_file_path)
                     
                     # 사용 시간 저장 후 로그인/로그아웃 로그 삭제
