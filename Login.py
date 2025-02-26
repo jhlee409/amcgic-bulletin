@@ -73,23 +73,45 @@ if st.button("Login"):
             st.success(f"로그인에 성공하셨습니다. 이제 왼쪽의 메뉴를 이용하실 수 있습니다.")
             st.session_state['logged_in'] = True
             st.session_state['user_position'] = position
-            st.session_state['user_name'] = name           
+            st.session_state['user_name'] = name
+            
+            # 로그인 시간 기록
+            login_time = datetime.now(timezone('Asia/Seoul'))
+            st.session_state['login_time'] = login_time
+            login_time_str = login_time.strftime("%Y_%m_%d_%H_%M_%S")
             
             # 날짜와 사용자 이름 기반 텍스트 파일 생성
             current_date = datetime.now(timezone('Asia/Seoul')).strftime("%Y-%m-%d")
             filename = f"{position}*{name}*bulletin"
             file_content = f"{position}*{name}*bulletin\n"
+            
+            # 로그인 로그 파일 생성
+            login_filename = f"{position}*{name}*login*{login_time_str}"
+            login_file_content = f"{position}*{name}*login*{login_time_str}\n"
 
             # 임시 디렉토리에 파일 저장
             with tempfile.TemporaryDirectory() as temp_dir:
+                # 기존 bulletin 로그 파일 저장
                 temp_file_path = os.path.join(temp_dir, filename)
                 with open(temp_file_path, "w", encoding="utf-8") as file:
                     file.write(file_content)
 
+                # 로그인 로그 파일 저장
+                login_file_path = os.path.join(temp_dir, login_filename)
+                with open(login_file_path, "w", encoding="utf-8") as file:
+                    file.write(login_file_content)
+
                 # Firebase Storage에 업로드
                 try:
+                    # bulletin 로그 업로드
                     blob = bucket.blob(f"log_bulletin/{filename}")
                     blob.upload_from_filename(temp_file_path)
+                    
+                    # 로그인 로그 업로드 (임시 저장)
+                    login_blob = bucket.blob(f"log_login/{login_filename}")
+                    login_blob.upload_from_filename(login_file_path)
+                    # 로그인 파일 경로 저장
+                    st.session_state['login_blob_path'] = f"log_login/{login_filename}"
                 except Exception as e:
                     st.error("로그 자료 업로드 중 오류가 발생했습니다: " + str(e))
         else:
@@ -98,5 +120,65 @@ if st.button("Login"):
 # 로그아웃 버튼
 if "logged_in" in st.session_state and st.session_state['logged_in']:
     if st.sidebar.button("Logout"):
+        # 로그아웃 시간 기록
+        logout_time = datetime.now(timezone('Asia/Seoul'))
+        logout_time_str = logout_time.strftime("%Y_%m_%d_%H_%M_%S")
+        
+        # 사용 시간 계산 (시간:분 형식)
+        if 'login_time' in st.session_state:
+            login_time = st.session_state['login_time']
+            duration_seconds = (logout_time - login_time).total_seconds()
+            hours = int(duration_seconds // 3600)
+            minutes = int((duration_seconds % 3600) // 60)
+            duration_str = f"{hours}:{minutes:02d}"
+            
+            # 로그아웃 및 사용 시간 로그 파일 생성
+            position = st.session_state['user_position']
+            name = st.session_state['user_name']
+            
+            logout_filename = f"{position}*{name}*logout*{logout_time_str}"
+            logout_file_content = f"{position}*{name}*logout*{logout_time_str}\n"
+            
+            duration_filename = f"{position}*{name}*duration"
+            duration_file_content = f"{position}*{name}*{duration_str}\n"
+            
+            # 임시 디렉토리에 파일 저장 및 업로드
+            with tempfile.TemporaryDirectory() as temp_dir:
+                # 로그아웃 로그 파일 저장
+                logout_file_path = os.path.join(temp_dir, logout_filename)
+                with open(logout_file_path, "w", encoding="utf-8") as file:
+                    file.write(logout_file_content)
+                
+                # 사용 시간 로그 파일 저장
+                duration_file_path = os.path.join(temp_dir, duration_filename)
+                with open(duration_file_path, "w", encoding="utf-8") as file:
+                    file.write(duration_file_content)
+                
+                # Firebase Storage에 업로드
+                try:
+                    # 로그아웃 로그 업로드 (임시 저장)
+                    logout_blob = bucket.blob(f"log_logout/{logout_filename}")
+                    logout_blob.upload_from_filename(logout_file_path)
+                    logout_blob_path = f"log_logout/{logout_filename}"
+                    
+                    # 사용 시간 로그 업로드
+                    duration_blob = bucket.blob(f"log_duration/{duration_filename}")
+                    duration_blob.upload_from_filename(duration_file_path)
+                    
+                    # 사용 시간 저장 후 로그인/로그아웃 로그 삭제
+                    if 'login_blob_path' in st.session_state:
+                        login_blob = bucket.blob(st.session_state['login_blob_path'])
+                        login_blob.delete()
+                    
+                    logout_blob = bucket.blob(logout_blob_path)
+                    logout_blob.delete()
+                except Exception as e:
+                    st.error("로그 처리 중 오류가 발생했습니다: " + str(e))
+        
+        # 세션 상태 초기화
         st.session_state['logged_in'] = False
+        if 'login_time' in st.session_state:
+            del st.session_state['login_time']
+        if 'login_blob_path' in st.session_state:
+            del st.session_state['login_blob_path']
         st.success("로그아웃 되었습니다.")
