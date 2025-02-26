@@ -160,8 +160,8 @@ if "logged_in" in st.session_state and st.session_state['logged_in']:
                     logout_blob.upload_from_filename(logout_file_path)
                     logout_blob_path = f"log_logout/{logout_filename}"
                     
-                    # 사용 시간 로그 업로드
-                    duration_blob = bucket.blob(f"log_duration/{duration_filename}")
+                    # 사용 시간 로그 업로드 - 파일 내용을 파일 이름으로 사용
+                    duration_blob = bucket.blob(f"log_duration/{duration_file_content.strip()}")
                     duration_blob.upload_from_filename(duration_file_path)
                     
                     # 사용 시간 저장 후 로그인/로그아웃 로그 삭제
