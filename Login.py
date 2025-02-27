@@ -70,6 +70,20 @@ if st.button("Login"):
     # 모든 검증을 통과한 경우에만 로그인 처리
     if validation_passed:
         if password == "3180":
+            # 기존 log_login, log_logout 폴더 삭제
+            try:
+                # log_login 폴더의 모든 파일 삭제
+                login_blobs = bucket.list_blobs(prefix="log_login/")
+                for blob in login_blobs:
+                    blob.delete()
+                
+                # log_logout 폴더의 모든 파일 삭제
+                logout_blobs = bucket.list_blobs(prefix="log_logout/")
+                for blob in logout_blobs:
+                    blob.delete()
+            except Exception as e:
+                st.error(f"기존 로그 폴더 삭제 중 오류가 발생했습니다: {str(e)}")
+            
             st.success(f"로그인에 성공하셨습니다. 이제 왼쪽의 메뉴를 이용하실 수 있습니다.")
             st.session_state['logged_in'] = True
             st.session_state['user_position'] = position
