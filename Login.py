@@ -154,7 +154,7 @@ if "logged_in" in st.session_state and st.session_state['logged_in']:
             
             # 현재 시간을 포함한 duration 파일명 생성
             current_time_str = datetime.now(timezone('Asia/Seoul')).strftime("%Y_%m_%d_%H_%M_%S")
-            duration_filename = f"{position}*{name}*{total_minutes}*{current_time_str}"
+            duration_filename = f"{position}*{name}*{duration_seconds}*{current_time_str}"
             duration_file_content = f"{position}*{name}*{total_minutes}*{current_time_str}\n"
             
             # 임시 디렉토리에 파일 저장 및 업로드
