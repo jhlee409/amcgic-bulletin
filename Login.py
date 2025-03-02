@@ -153,7 +153,7 @@ if "logged_in" in st.session_state and st.session_state['logged_in']:
             logout_file_content = f"{position}*{name}*logout*{logout_time_str}\n"
             
             # 현재 시간을 포함한 duration 파일명 생성 (UTC 사용)
-            current_time_str = datetime.now(timezone('UTC')).strftime("%Y_%m_%d_%H_%M_%S")
+            current_time_str = datetime.now(timezone('UTC')).strftime("%Y%m%d_%H%M%S")
             # 파일명과 내용에 동일한 시간 단위(초) 사용
             duration_filename = f"{position}*{name}*{int(duration_seconds)}*{current_time_str}"
             duration_file_content = f"{position}*{name}*{int(duration_seconds)}*{current_time_str}\n"
