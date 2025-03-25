@@ -25,7 +25,7 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
         st.markdown(
             '''
             1. 여러분은 앞으로 1년동안 체계적으로 구축된 진단 EGD 교육 프로그램을 이수하게 됩니다.
-            1. 4월 orientation과 memory test 를 시작으로 앞에 첨부된 연간 일정표에 따라 훈련이 진행됩니다. OT 때 교육 수첩을 받아 교육과정 내내 사용하게 됩니다.
+            1. 4월 orientation과 memory test 를 시작으로 향후 제공될 연간 일정표에 따라 훈련이 진행됩니다. OT 때 교육 수첩을 받아 교육과정 내내 사용하게 됩니다.
             1. 교육 과정은 MT(memory test), SHT(scope handling test), EMT(EGD method training), participation, performance test로 이 순서에 따라 진행됩니다.
             1. 훈련 프로그램 OT의 일정을 미리 알려주니 일정에 참여할 수 있도록 스케쥴을 조정하기 바랍니다.
             1. 훈련과정의 소개 프로그램은 [AMC GI 상부 Simulator training](https://amcgic-simulator.streamlit.app/)에 접속하면 시청할 수 있습니다. 구체적인 방법은 앞의 Home page를 참고하세요

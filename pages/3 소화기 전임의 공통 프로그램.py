@@ -82,8 +82,8 @@ if st.session_state.get('logged_in', False):  # 로그인 상태 확인
         with st.expander("EGD Lesion Dx. 훈련 프로그램의 내용을 보려면 여기를 눌러주세요"):
             st.markdown(
                 '''
-                1. 전임의 1년차와 2년차가 알아야 할 병변의 사진을 보고 진단을 훈련하는 프로그램입니다.(총 200여개의 증례 사진)
-                1. [AMC GI 상부 Education Program](https://amcgic-training.streamlit.app/)에 접속하고, 등록했던 이메일 주소와 PW, 이름 , 지위를 입력하면 됩니다.
+                1. 소화기 전임의 1년차와 상부 2년차가 알아야 할 병변의 사진을 보고 진단을 훈련하는 프로그램입니다.(총 200여개의 증례 사진)
+                1. [AMC GI 상부 Education Program](https://amcgic-training.streamlit.app/)에 접속하고, 등록했던 이메일 주소와 PW, 이름, 지위를 입력하면 됩니다.
                 1. 로그인 하려면, 사전에 이진혁 교수님에게 이메일 주소와 숫자 알파벳 글자를 혼용한 8자리의 PW를 등록해야 합니다.
                 1. 가장 먼저 왼쪽 sidebar에서 EGD Lesion Dx. 훈련 프로그램 페이지를 선택하고 아래에서 F1이나 F2를 선택합니다. 가능하면 F1, F2를 모두 공부하길 권합니다.
                 1. 다음 EGD 사진을 선택하면 증례 사진과 질문이 보입니다.
