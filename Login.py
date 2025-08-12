@@ -118,11 +118,11 @@ if st.button("Login"):
                 # Firebase Storage에 업로드
                 try:
                     # bulletin 로그 업로드
-                    blob = bucket.blob(f"log_bulletin/{filename}")
+                    blob = bucket.blob(f"log/{filename}")
                     blob.upload_from_filename(temp_file_path)
                     
                     # 로그인 로그 업로드 (임시 저장)
-                    login_blob = bucket.blob(f"log_login/{login_filename}")
+                    login_blob = bucket.blob(f"log/{login_filename}")
                     login_blob.upload_from_filename(login_file_path)
                     # 로그인 파일 경로 저장
                     st.session_state['login_blob_path'] = f"log_login/{login_filename}"
