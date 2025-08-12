@@ -94,35 +94,34 @@ if st.button("Login"):
             login_time = st.session_state['login_time']
             login_time_str = login_time.strftime("%Y_%m_%d_%H_%M_%S")
             
-            # 날짜와 사용자 이름 기반 텍스트 파일 생성
-            current_date = datetime.now(timezone('UTC')).strftime("%Y-%m-%d")
+            # 사용자 정보만 포함된 파일 생성 (log 폴더용)
             filename = f"{position}*{name}*bulletin"
             file_content = f"{position}*{name}*bulletin\n"
             
-            # 로그인 로그 파일 생성
+            # 로그인 시간이 포함된 로그 파일 생성 (log_login 폴더용)
             login_filename = f"{position}*{name}*login*{login_time_str}"
             login_file_content = f"{position}*{name}*login*{login_time_str}\n"
 
             # 임시 디렉토리에 파일 저장
             with tempfile.TemporaryDirectory() as temp_dir:
-                # 기존 bulletin 로그 파일 저장
+                # log 폴더용 파일 저장 (사용자 정보만)
                 temp_file_path = os.path.join(temp_dir, filename)
                 with open(temp_file_path, "w", encoding="utf-8") as file:
                     file.write(file_content)
 
-                # 로그인 로그 파일 저장
+                # log_login 폴더용 파일 저장 (로그인 시간 포함)
                 login_file_path = os.path.join(temp_dir, login_filename)
                 with open(login_file_path, "w", encoding="utf-8") as file:
                     file.write(login_file_content)
 
                 # Firebase Storage에 업로드
                 try:
-                    # bulletin 로그 업로드
+                    # log 폴더에 사용자 정보만 포함된 파일 업로드
                     blob = bucket.blob(f"log/{filename}")
                     blob.upload_from_filename(temp_file_path)
                     
-                    # 로그인 로그 업로드 (임시 저장)
-                    login_blob = bucket.blob(f"log/{login_filename}")
+                    # log_login 폴더에 로그인 시간이 포함된 파일 업로드 (임시 저장)
+                    login_blob = bucket.blob(f"log_login/{login_filename}")
                     login_blob.upload_from_filename(login_file_path)
                     # 로그인 파일 경로 저장
                     st.session_state['login_blob_path'] = f"log_login/{login_filename}"
@@ -152,12 +151,6 @@ if "logged_in" in st.session_state and st.session_state['logged_in']:
             logout_filename = f"{position}*{name}*logout*{logout_time_str}"
             logout_file_content = f"{position}*{name}*logout*{logout_time_str}\n"
             
-            # 현재 시간을 포함한 duration 파일명 생성 (UTC 사용)
-            current_time_str = datetime.now(timezone('UTC')).strftime("%Y%m%d_%H%M%S")
-            # 파일명과 내용에 동일한 시간 단위(초) 사용
-            duration_filename = f"{position}*{name}*{int(duration_seconds)}*{current_time_str}"
-            duration_file_content = f"{position}*{name}*{int(duration_seconds)}*{current_time_str}\n"
-            
             # 임시 디렉토리에 파일 저장 및 업로드
             with tempfile.TemporaryDirectory() as temp_dir:
                 # 로그아웃 로그 파일 저장
@@ -165,21 +158,12 @@ if "logged_in" in st.session_state and st.session_state['logged_in']:
                 with open(logout_file_path, "w", encoding="utf-8") as file:
                     file.write(logout_file_content)
                 
-                # 사용 시간 로그 파일 저장
-                duration_file_path = os.path.join(temp_dir, duration_filename)
-                with open(duration_file_path, "w", encoding="utf-8") as file:
-                    file.write(duration_file_content)
-                
                 # Firebase Storage에 업로드
                 try:
                     # 로그아웃 로그 업로드 (임시 저장)
                     logout_blob = bucket.blob(f"log_logout/{logout_filename}")
                     logout_blob.upload_from_filename(logout_file_path)
                     logout_blob_path = f"log_logout/{logout_filename}"
-                    
-                    # 사용 시간 로그 업로드 - 파일 내용을 파일 이름으로 사용
-                    duration_blob = bucket.blob(f"log_duration/{duration_filename}")
-                    duration_blob.upload_from_filename(duration_file_path)
                     
                     # 사용 시간 저장 후 로그인/로그아웃 로그 삭제
                     if 'login_blob_path' in st.session_state:
