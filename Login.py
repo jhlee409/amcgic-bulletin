@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Create pages
-login_page = st.Page("pages/Login.py", title="로그인 페이지", icon=":material/chat:")
+login_page = st.Page("pages/Login_page.py", title="로그인 페이지", icon=":material/chat:")
 page_1 = st.Page("pages/0 Home.py", title="Home", icon=":material/analytics:")
 page_2 = st.Page("pages/1 교육 프로그램 구성.py", title="교육 프로그램 구성", icon=":material/domain:")
 page_3 = st.Page("pages/2 내과 전공의 3년차 프로퍼.py", title="내과 전공의 3년차 프로퍼", icon=":material/domain:")
